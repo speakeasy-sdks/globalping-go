@@ -1,0 +1,10 @@
+# MeasurementMtrOptions
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `Packets`                                                                              | **int64*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `Port`                                                                                 | **int64*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `Protocol`                                                                             | [*MeasurementMtrOptionsProtocol](../../models/shared/measurementmtroptionsprotocol.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |

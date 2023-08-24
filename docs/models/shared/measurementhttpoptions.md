@@ -1,0 +1,11 @@
+# MeasurementHTTPOptions
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `Port`                                                                                   | **int64*                                                                                 | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `Protocol`                                                                               | [*MeasurementHTTPOptionsProtocol](../../models/shared/measurementhttpoptionsprotocol.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `Request`                                                                                | [*MeasurementHTTPOptionsRequest](../../models/shared/measurementhttpoptionsrequest.md)   | :heavy_minus_sign:                                                                       | The HTTP request properties.                                                             |
+| `Resolver`                                                                               | *interface{}*                                                                            | :heavy_minus_sign:                                                                       | A DNS resolver to use for the query. Defaults to the probe's system resolver.            |

@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: 67d7463e76861b914c1f7ff235401df4
+  docVersion: 1.0.0
+  speakeasyVersion: 1.74.9
+  generationVersion: 2.86.10
 generation:
   comments:
     disableComments: false
@@ -7,7 +12,11 @@ generation:
   sdkClassName: Globalping
   singleTagPerOp: false
   tagNamespacingDisabled: false
+features:
+  go:
+    core: 2.83.0
+    globalServerURLs: 2.82.0
 go:
-  version: 0.0.1
+  version: 0.1.0
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/globalping-go
