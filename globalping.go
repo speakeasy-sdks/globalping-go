@@ -57,7 +57,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// Globalping - Globalping API: The public Globalping API.
+// Globalping API: The public Globalping API.
 // Monitor, debug, and benchmark your internet infrastructure from a globally distributed network of probes.
 //
 // ## Client guidelines
@@ -125,8 +125,8 @@ func New(opts ...SDKOption) *Globalping {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.89.1",
+			SDKVersion:        "0.3.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

@@ -34,59 +34,30 @@ func main() {
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
         InProgressUpdates: globalping.Bool(false),
-        Limit: globalping.Int64(758616),
+        Limit: globalping.Int64(383441),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalping.Int64(105907),
-                City: globalping.String("Jarenboro"),
-                Continent: shared.ContinentCodeAn.ToPointer(),
-                Country: globalping.String("Samoa"),
-                Limit: globalping.Int64(736918),
-                Magic: globalping.String("esse"),
-                Network: globalping.String("ipsum"),
-                Region: shared.RegionNameSouthernAsia.ToPointer(),
-                State: globalping.String("aspernatur"),
+                Asn: globalping.Int64(477665),
+                City: globalping.String("Schuliststad"),
+                Continent: shared.ContinentCodeEu.ToPointer(),
+                Country: globalping.String("Mayotte"),
+                Limit: globalping.Int64(392785),
+                Magic: globalping.String("recusandae"),
+                Network: globalping.String("temporibus"),
+                Region: shared.RegionNameEasternAfrica.ToPointer(),
+                State: globalping.String("quis"),
                 Tags: []string{
-                    "ad",
-                },
-            },
-            shared.MeasurementLocationOption{
-                Asn: globalping.Int64(617636),
-                City: globalping.String("New Dameonfurt"),
-                Continent: shared.ContinentCodeAs.ToPointer(),
-                Country: globalping.String("United States of America"),
-                Limit: globalping.Int64(902599),
-                Magic: globalping.String("fuga"),
-                Network: globalping.String("in"),
-                Region: shared.RegionNameSouthAmerica.ToPointer(),
-                State: globalping.String("iste"),
-                Tags: []string{
-                    "saepe",
-                    "quidem",
-                },
-            },
-            shared.MeasurementLocationOption{
-                Asn: globalping.Int64(99280),
-                City: globalping.String("Fort Manuelachester"),
-                Continent: shared.ContinentCodeNa.ToPointer(),
-                Country: globalping.String("Chad"),
-                Limit: globalping.Int64(210382),
-                Magic: globalping.String("corporis"),
-                Network: globalping.String("explicabo"),
-                Region: shared.RegionNameSouthernEurope.ToPointer(),
-                State: globalping.String("enim"),
-                Tags: []string{
-                    "nemo",
-                    "minima",
-                    "excepturi",
+                    "veritatis",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementPingOptions{
-            Packets: globalping.Int64(438601),
+        MeasurementOptions: &shared.MeasurementMtrOptions{
+            Packets: globalping.Int64(20218),
+            Port: globalping.Int64(368241),
+            Protocol: shared.MeasurementMtrOptionsProtocolUDP.ToPointer(),
         },
-        Target: "culpa",
-        Type: shared.MeasurementTypeHTTP,
+        Target: "sapiente",
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)
