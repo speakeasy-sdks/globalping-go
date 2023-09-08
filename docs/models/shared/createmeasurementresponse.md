@@ -1,7 +1,5 @@
 # CreateMeasurementResponse
 
-Accepted
-
 
 ## Fields
 
