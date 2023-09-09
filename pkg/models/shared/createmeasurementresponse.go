@@ -2,7 +2,6 @@
 
 package shared
 
-// CreateMeasurementResponse - Accepted
 type CreateMeasurementResponse struct {
 	ID string `json:"id"`
 	// The number of probes that performed the measurement. Smaller or equal to `limit`.
