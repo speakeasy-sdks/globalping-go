@@ -10,46 +10,41 @@ go get github.com/speakeasy-sdks/globalping-go
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/globalping-go"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 )
 
 func main() {
-    s := globalping.New()
+    s := globalpinggo.New()
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalping.Bool(false),
-        Limit: globalping.Int64(548814),
+        InProgressUpdates: globalpinggo.Bool(false),
+        Limit: globalpinggo.Int64(56713),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalping.Int64(592845),
-                City: globalping.String("Sporerstead"),
-                Continent: shared.ContinentCodeSa.ToPointer(),
-                Country: globalping.String("Mali"),
-                Limit: globalping.Int64(847252),
-                Magic: globalping.String("vel"),
-                Network: globalping.String("error"),
-                Region: shared.RegionNameEasternEurope.ToPointer(),
-                State: globalping.String("suscipit"),
+                Asn: globalpinggo.Int64(963663),
+                City: globalpinggo.String("South Jasper"),
+                Continent: shared.ContinentCodeOc.ToPointer(),
+                Country: globalpinggo.String("Slovenia"),
+                Limit: globalpinggo.Int64(528895),
+                Magic: globalpinggo.String("iusto"),
+                Network: globalpinggo.String("excepturi"),
+                Region: shared.RegionNameNorthernAmerica.ToPointer(),
+                State: globalpinggo.String("recusandae"),
                 Tags: []string{
-                    "iure",
+                    "temporibus",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementTracerouteOptions{
-            Port: globalping.Int64(891773),
-            Protocol: shared.MeasurementTracerouteOptionsProtocolIcmp.ToPointer(),
-        },
-        Target: "delectus",
+        MeasurementOptions: &shared.MeasurementOptions{},
+        Target: "ab",
         Type: shared.MeasurementTypeTraceroute,
     })
     if err != nil {
@@ -75,6 +70,38 @@ func main() {
 
 * [ListProbes](docs/sdks/probes/README.md#listprobes) - List currently connected probes
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+
+
+<!-- Start Pagination -->
+# Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+
+
+<!-- End Pagination -->
+
+
+
+<!-- Start Go Types -->
+
+<!-- End Go Types -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 
 ### Maturity
 

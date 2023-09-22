@@ -8,9 +8,11 @@ pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
 pkg/types/decimal.go
+pkg/types/pointers.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
+pkg/utils/json.go
 pkg/utils/pathparams.go
 pkg/utils/queryparams.go
 pkg/utils/requestbody.go
@@ -22,6 +24,7 @@ pkg/models/operations/listprobes.go
 pkg/models/shared/createmeasurementresponse.go
 pkg/models/shared/measurementrequest.go
 pkg/models/shared/measurementtype.go
+pkg/models/shared/measurementoptions.go
 pkg/models/shared/measurementpingoptions.go
 pkg/models/shared/measurementtracerouteoptions.go
 pkg/models/shared/measurementdnsoptions.go
@@ -32,9 +35,6 @@ pkg/models/shared/regionname.go
 pkg/models/shared/continentcode.go
 pkg/models/shared/probe.go
 pkg/models/shared/probelocation.go
-docs/sdks/globalping/README.md
-docs/sdks/measurements/README.md
-docs/sdks/probes/README.md
 USAGE.md
 docs/models/operations/createmeasurement429applicationjsonerror.md
 docs/models/operations/createmeasurement429applicationjson.md
@@ -47,6 +47,7 @@ docs/models/operations/listprobesresponse.md
 docs/models/shared/createmeasurementresponse.md
 docs/models/shared/measurementrequest.md
 docs/models/shared/measurementtype.md
+docs/models/shared/measurementoptions.md
 docs/models/shared/measurementpingoptions.md
 docs/models/shared/measurementtracerouteoptionsprotocol.md
 docs/models/shared/measurementtracerouteoptions.md
@@ -65,4 +66,7 @@ docs/models/shared/regionname.md
 docs/models/shared/continentcode.md
 docs/models/shared/probe.md
 docs/models/shared/probelocation.md
+docs/sdks/globalping/README.md
+docs/sdks/measurements/README.md
+docs/sdks/probes/README.md
 .gitattributes

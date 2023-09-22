@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
 type MeasurementTracerouteOptionsProtocol string
@@ -38,8 +39,19 @@ func (e *MeasurementTracerouteOptionsProtocol) UnmarshalJSON(data []byte) error 
 }
 
 type MeasurementTracerouteOptions struct {
-	Port     *int64                                `json:"port,omitempty"`
-	Protocol *MeasurementTracerouteOptionsProtocol `json:"protocol,omitempty"`
+	Port     *int64                                `default:"80" json:"port"`
+	Protocol *MeasurementTracerouteOptionsProtocol `default:"ICMP" json:"protocol"`
+}
+
+func (m MeasurementTracerouteOptions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementTracerouteOptions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementTracerouteOptions) GetPort() *int64 {

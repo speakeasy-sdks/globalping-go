@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
 type MeasurementHTTPOptionsProtocol string
@@ -72,9 +73,20 @@ type MeasurementHTTPOptionsRequest struct {
 	// An optional override for the `Host` header. The default value is based on the `target`.
 	//
 	Host   *string                              `json:"host,omitempty"`
-	Method *MeasurementHTTPOptionsRequestMethod `json:"method,omitempty"`
+	Method *MeasurementHTTPOptionsRequestMethod `default:"HEAD" json:"method"`
 	Path   *string                              `json:"path,omitempty"`
 	Query  *string                              `json:"query,omitempty"`
+}
+
+func (m MeasurementHTTPOptionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementHTTPOptionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementHTTPOptionsRequest) GetHeaders() map[string]string {
@@ -113,12 +125,23 @@ func (o *MeasurementHTTPOptionsRequest) GetQuery() *string {
 }
 
 type MeasurementHTTPOptions struct {
-	Port     *int64                          `json:"port,omitempty"`
-	Protocol *MeasurementHTTPOptionsProtocol `json:"protocol,omitempty"`
+	Port     *int64                          `default:"80" json:"port"`
+	Protocol *MeasurementHTTPOptionsProtocol `default:"HTTPS" json:"protocol"`
 	// The HTTP request properties.
 	Request *MeasurementHTTPOptionsRequest `json:"request,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
 	Resolver interface{} `json:"resolver,omitempty"`
+}
+
+func (m MeasurementHTTPOptions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementHTTPOptions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementHTTPOptions) GetPort() *int64 {

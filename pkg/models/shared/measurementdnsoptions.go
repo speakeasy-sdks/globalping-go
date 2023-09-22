@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
 type MeasurementDNSOptionsProtocol string
@@ -99,7 +100,18 @@ func (e *MeasurementDNSOptionsQueryType) UnmarshalJSON(data []byte) error {
 
 // MeasurementDNSOptionsQuery - The DNS query properties.
 type MeasurementDNSOptionsQuery struct {
-	Type *MeasurementDNSOptionsQueryType `json:"type,omitempty"`
+	Type *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
+}
+
+func (m MeasurementDNSOptionsQuery) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementDNSOptionsQuery) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
@@ -110,15 +122,26 @@ func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 }
 
 type MeasurementDNSOptions struct {
-	Port     *int64                         `json:"port,omitempty"`
-	Protocol *MeasurementDNSOptionsProtocol `json:"protocol,omitempty"`
+	Port     *int64                         `default:"53" json:"port"`
+	Protocol *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
 	// The DNS query properties.
 	Query *MeasurementDNSOptionsQuery `json:"query,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
 	Resolver interface{} `json:"resolver,omitempty"`
 	// Toggles tracing of the delegation path from the root servers down to the target domain name.
 	//
-	Trace *bool `json:"trace,omitempty"`
+	Trace *bool `default:"false" json:"trace"`
+}
+
+func (m MeasurementDNSOptions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementDNSOptions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementDNSOptions) GetPort() *int64 {

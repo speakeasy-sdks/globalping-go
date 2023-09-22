@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
+)
+
 type MeasurementLocationOption struct {
 	// An autonomous system number.
 	Asn *int64 `json:"asn,omitempty"`
@@ -13,7 +17,7 @@ type MeasurementLocationOption struct {
 	// Mutually exclusive with the global `limit`.
 	// Specifies the maximum number of probes that run the measurement in this location.
 	//
-	Limit *int64 `json:"limit,omitempty"`
+	Limit *int64 `default:"1" json:"limit"`
 	// Fuzzy matching based on the `country`, `city`, `state`, `continent`, `region`, `asn` (using `AS` prefix, e.g., `AS123`), `tags`, and `network` values.
 	// Includes the full names, ISO codes (where applicable), and common aliases.
 	// Multiple conditions can be combined using the `+` character.
@@ -32,6 +36,17 @@ type MeasurementLocationOption struct {
 	// and [Google Cloud](https://cloud.google.com/compute/docs/regions-zones#available) are automatically assigned the service region code.
 	//
 	Tags []string `json:"tags,omitempty"`
+}
+
+func (m MeasurementLocationOption) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementLocationOption) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementLocationOption) GetAsn() *int64 {

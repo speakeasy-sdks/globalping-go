@@ -7,39 +7,36 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/globalping-go"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 )
 
 func main() {
-    s := globalping.New()
+    s := globalpinggo.New()
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalping.Bool(false),
-        Limit: globalping.Int64(548814),
+        InProgressUpdates: globalpinggo.Bool(false),
+        Limit: globalpinggo.Int64(548814),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalping.Int64(592845),
-                City: globalping.String("Sporerstead"),
+                Asn: globalpinggo.Int64(592845),
+                City: globalpinggo.String("Sporerstead"),
                 Continent: shared.ContinentCodeSa.ToPointer(),
-                Country: globalping.String("Mali"),
-                Limit: globalping.Int64(847252),
-                Magic: globalping.String("vel"),
-                Network: globalping.String("error"),
+                Country: globalpinggo.String("Mali"),
+                Limit: globalpinggo.Int64(847252),
+                Magic: globalpinggo.String("vel"),
+                Network: globalpinggo.String("error"),
                 Region: shared.RegionNameEasternEurope.ToPointer(),
-                State: globalping.String("suscipit"),
+                State: globalpinggo.String("suscipit"),
                 Tags: []string{
                     "iure",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementTracerouteOptions{
-            Port: globalping.Int64(891773),
-            Protocol: shared.MeasurementTracerouteOptionsProtocolIcmp.ToPointer(),
-        },
-        Target: "delectus",
-        Type: shared.MeasurementTypeTraceroute,
+        MeasurementOptions: &shared.MeasurementOptions{},
+        Target: "magnam",
+        Type: shared.MeasurementTypeHTTP,
     })
     if err != nil {
         log.Fatal(err)

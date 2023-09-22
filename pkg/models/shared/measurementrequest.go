@@ -2,27 +2,42 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
+)
+
 type MeasurementRequest struct {
 	// Specifies if the results of the measurement should be updated while being in progress.
 	// If `false`, results are populated to the measurement object only after the test finishes.
 	// If `true`, partial results are returned as soon as they are available and can be presented to the user in real-time.
 	// Note that only the top 5 tests from the results array will update in real-time.
 	//
-	InProgressUpdates *bool `json:"inProgressUpdates,omitempty"`
+	InProgressUpdates *bool `default:"false" json:"inProgressUpdates"`
 	// Specifies the maximum number of probes that run the measurement.
 	// The result count might be lower if there aren't enough probes available in the specified locations.
 	//
-	Limit *int64 `json:"limit,omitempty"`
+	Limit *int64 `default:"1" json:"limit"`
 	// An array of locations from which to run the measurement.
 	// Each object specifies a location using one or multiple keys.
 	//
 	Locations          []MeasurementLocationOption `json:"locations,omitempty"`
-	MeasurementOptions interface{}                 `json:"measurementOptions,omitempty"`
+	MeasurementOptions *MeasurementOptions         `json:"measurementOptions,omitempty"`
 	// A public endpoint on which the measurement is executed.
 	// Typically a hostname or an IPv4 address. The exact format depends on the measurement type.
 	//
 	Target string          `json:"target"`
 	Type   MeasurementType `json:"type"`
+}
+
+func (m MeasurementRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeasurementRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MeasurementRequest) GetInProgressUpdates() *bool {
@@ -46,7 +61,7 @@ func (o *MeasurementRequest) GetLocations() []MeasurementLocationOption {
 	return o.Locations
 }
 
-func (o *MeasurementRequest) GetMeasurementOptions() interface{} {
+func (o *MeasurementRequest) GetMeasurementOptions() *MeasurementOptions {
 	if o == nil {
 		return nil
 	}

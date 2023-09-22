@@ -24,40 +24,36 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/globalping-go"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 )
 
 func main() {
-    s := globalping.New()
+    s := globalpinggo.New()
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalping.Bool(false),
-        Limit: globalping.Int64(383441),
+        InProgressUpdates: globalpinggo.Bool(false),
+        Limit: globalpinggo.Int64(87129),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalping.Int64(477665),
-                City: globalping.String("Schuliststad"),
-                Continent: shared.ContinentCodeEu.ToPointer(),
-                Country: globalping.String("Mayotte"),
-                Limit: globalping.Int64(392785),
-                Magic: globalping.String("recusandae"),
-                Network: globalping.String("temporibus"),
-                Region: shared.RegionNameEasternAfrica.ToPointer(),
-                State: globalping.String("quis"),
+                Asn: globalpinggo.Int64(648172),
+                City: globalpinggo.String("West Ritaworth"),
+                Continent: shared.ContinentCodeOc.ToPointer(),
+                Country: globalpinggo.String("Burundi"),
+                Limit: globalpinggo.Int64(870013),
+                Magic: globalpinggo.String("at"),
+                Network: globalpinggo.String("maiores"),
+                Region: shared.RegionNameEasternAsia.ToPointer(),
+                State: globalpinggo.String("quod"),
                 Tags: []string{
-                    "veritatis",
+                    "quod",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementMtrOptions{
-            Packets: globalping.Int64(20218),
-            Port: globalping.Int64(368241),
-            Protocol: shared.MeasurementMtrOptionsProtocolUDP.ToPointer(),
-        },
-        Target: "sapiente",
-        Type: shared.MeasurementTypeMtr,
+        MeasurementOptions: &shared.MeasurementOptions{},
+        Target: "esse",
+        Type: shared.MeasurementTypeDNS,
     })
     if err != nil {
         log.Fatal(err)

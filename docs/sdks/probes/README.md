@@ -17,11 +17,11 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/globalping-go"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 )
 
 func main() {
-    s := globalping.New()
+    s := globalpinggo.New()
 
     ctx := context.Background()
     res, err := s.Probes.ListProbes(ctx)
