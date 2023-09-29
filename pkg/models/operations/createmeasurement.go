@@ -109,12 +109,15 @@ func (o *CreateMeasurement400ApplicationJSON) GetError() CreateMeasurement400App
 }
 
 type CreateMeasurementResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Accepted
 	CreateMeasurementResponse *shared.CreateMeasurementResponse
 	Headers                   map[string][]string
-	StatusCode                int
-	RawResponse               *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Bad Request
 	CreateMeasurement400ApplicationJSONObject *CreateMeasurement400ApplicationJSON
 	// Unprocessable Entity
