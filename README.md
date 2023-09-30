@@ -26,26 +26,26 @@ func main() {
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
         InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(56713),
+        Limit: globalpinggo.Int64(139213),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(963663),
-                City: globalpinggo.String("South Jasper"),
-                Continent: shared.ContinentCodeOc.ToPointer(),
-                Country: globalpinggo.String("Slovenia"),
-                Limit: globalpinggo.Int64(528895),
-                Magic: globalpinggo.String("iusto"),
-                Network: globalpinggo.String("excepturi"),
-                Region: shared.RegionNameNorthernAmerica.ToPointer(),
-                State: globalpinggo.String("recusandae"),
+                Asn: globalpinggo.Int64(176799),
+                City: globalpinggo.String("Maggiobury"),
+                Continent: shared.ContinentCodeSa.ToPointer(),
+                Country: globalpinggo.String("Mongolia"),
+                Limit: globalpinggo.Int64(445560),
+                Magic: globalpinggo.String("bluetooth driver Southwest"),
+                Network: globalpinggo.String("neutral"),
+                Region: shared.RegionNameMicronesia.ToPointer(),
+                State: globalpinggo.String("program male Trial"),
                 Tags: []string{
-                    "temporibus",
+                    "Implementation",
                 },
             },
         },
         MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "ab",
-        Type: shared.MeasurementTypeTraceroute,
+        Target: "Island",
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)
@@ -75,8 +75,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -89,8 +87,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

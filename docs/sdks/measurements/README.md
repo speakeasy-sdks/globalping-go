@@ -1,4 +1,5 @@
 # Measurements
+(*Measurements*)
 
 ### Available Operations
 
@@ -34,26 +35,26 @@ func main() {
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
         InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(87129),
+        Limit: globalpinggo.Int64(139213),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(648172),
-                City: globalpinggo.String("West Ritaworth"),
-                Continent: shared.ContinentCodeOc.ToPointer(),
-                Country: globalpinggo.String("Burundi"),
-                Limit: globalpinggo.Int64(870013),
-                Magic: globalpinggo.String("at"),
-                Network: globalpinggo.String("maiores"),
-                Region: shared.RegionNameEasternAsia.ToPointer(),
-                State: globalpinggo.String("quod"),
+                Asn: globalpinggo.Int64(176799),
+                City: globalpinggo.String("Maggiobury"),
+                Continent: shared.ContinentCodeSa.ToPointer(),
+                Country: globalpinggo.String("Mongolia"),
+                Limit: globalpinggo.Int64(445560),
+                Magic: globalpinggo.String("bluetooth driver Southwest"),
+                Network: globalpinggo.String("neutral"),
+                Region: shared.RegionNameMicronesia.ToPointer(),
+                State: globalpinggo.String("program male Trial"),
                 Tags: []string{
-                    "quod",
+                    "Implementation",
                 },
             },
         },
         MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "esse",
-        Type: shared.MeasurementTypeDNS,
+        Target: "Island",
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)
