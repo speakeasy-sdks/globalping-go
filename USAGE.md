@@ -17,26 +17,26 @@ func main() {
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
         InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(548814),
+        Limit: globalpinggo.Int64(139213),
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(592845),
-                City: globalpinggo.String("Sporerstead"),
+                Asn: globalpinggo.Int64(176799),
+                City: globalpinggo.String("Maggiobury"),
                 Continent: shared.ContinentCodeSa.ToPointer(),
-                Country: globalpinggo.String("Mali"),
-                Limit: globalpinggo.Int64(847252),
-                Magic: globalpinggo.String("vel"),
-                Network: globalpinggo.String("error"),
-                Region: shared.RegionNameEasternEurope.ToPointer(),
-                State: globalpinggo.String("suscipit"),
+                Country: globalpinggo.String("Mongolia"),
+                Limit: globalpinggo.Int64(445560),
+                Magic: globalpinggo.String("bluetooth driver Southwest"),
+                Network: globalpinggo.String("neutral"),
+                Region: shared.RegionNameMicronesia.ToPointer(),
+                State: globalpinggo.String("program male Trial"),
                 Tags: []string{
-                    "iure",
+                    "Implementation",
                 },
             },
         },
         MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "magnam",
-        Type: shared.MeasurementTypeHTTP,
+        Target: "Island",
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)

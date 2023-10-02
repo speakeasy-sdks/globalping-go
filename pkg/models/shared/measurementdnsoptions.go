@@ -127,7 +127,7 @@ type MeasurementDNSOptions struct {
 	// The DNS query properties.
 	Query *MeasurementDNSOptionsQuery `json:"query,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
-	Resolver interface{} `json:"resolver,omitempty"`
+	Resolver *string `json:"resolver,omitempty"`
 	// Toggles tracing of the delegation path from the root servers down to the target domain name.
 	//
 	Trace *bool `default:"false" json:"trace"`
@@ -165,7 +165,7 @@ func (o *MeasurementDNSOptions) GetQuery() *MeasurementDNSOptionsQuery {
 	return o.Query
 }
 
-func (o *MeasurementDNSOptions) GetResolver() interface{} {
+func (o *MeasurementDNSOptions) GetResolver() *string {
 	if o == nil {
 		return nil
 	}

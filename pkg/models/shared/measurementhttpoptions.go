@@ -130,7 +130,7 @@ type MeasurementHTTPOptions struct {
 	// The HTTP request properties.
 	Request *MeasurementHTTPOptionsRequest `json:"request,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
-	Resolver interface{} `json:"resolver,omitempty"`
+	Resolver *string `json:"resolver,omitempty"`
 }
 
 func (m MeasurementHTTPOptions) MarshalJSON() ([]byte, error) {
@@ -165,7 +165,7 @@ func (o *MeasurementHTTPOptions) GetRequest() *MeasurementHTTPOptionsRequest {
 	return o.Request
 }
 
-func (o *MeasurementHTTPOptions) GetResolver() interface{} {
+func (o *MeasurementHTTPOptions) GetResolver() *string {
 	if o == nil {
 		return nil
 	}
