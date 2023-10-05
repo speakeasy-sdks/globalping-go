@@ -5,7 +5,7 @@ package shared
 type Probe struct {
 	Location ProbeLocation `json:"location"`
 	// A list of default DNS resolvers configured on the probe.
-	Resolvers []interface{} `json:"resolvers"`
+	Resolvers []string `json:"resolvers"`
 	// An array of additional values that can be used to target the probe.
 	// Probes hosted in [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions)
 	// and [Google Cloud](https://cloud.google.com/compute/docs/regions-zones#available) are automatically assigned the service region code.
@@ -22,9 +22,9 @@ func (o *Probe) GetLocation() ProbeLocation {
 	return o.Location
 }
 
-func (o *Probe) GetResolvers() []interface{} {
+func (o *Probe) GetResolvers() []string {
 	if o == nil {
-		return []interface{}{}
+		return []string{}
 	}
 	return o.Resolvers
 }
