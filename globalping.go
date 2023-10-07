@@ -47,6 +47,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	UserAgent         string
 	RetryConfig       *utils.RetryConfig
 }
 
@@ -132,8 +133,9 @@ func New(opts ...SDKOption) *Globalping {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.4.1",
-			GenVersion:        "2.125.1",
+			SDKVersion:        "0.5.0",
+			GenVersion:        "2.150.0",
+			UserAgent:         "speakeasy-sdk/go 0.5.0 2.150.0 1.0.0 github.com/speakeasy-sdks/globalping-go",
 		},
 	}
 	for _, opt := range opts {

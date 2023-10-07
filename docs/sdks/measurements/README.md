@@ -1,8 +1,10 @@
 # Measurements
+(*Measurements*)
 
 ### Available Operations
 
 * [CreateMeasurement](#createmeasurement) - Create measurement
+* [GetMeasurement](#getmeasurement) - Get measurement
 
 ## CreateMeasurement
 
@@ -32,28 +34,29 @@ func main() {
     s := globalpinggo.New()
 
     ctx := context.Background()
-    res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(87129),
+    res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
+        AdditionalProperties: map[string]interface{}{
+            "Florida": "salmon",
+        },
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(648172),
-                City: globalpinggo.String("West Ritaworth"),
-                Continent: shared.ContinentCodeOc.ToPointer(),
-                Country: globalpinggo.String("Burundi"),
-                Limit: globalpinggo.Int64(870013),
-                Magic: globalpinggo.String("at"),
-                Network: globalpinggo.String("maiores"),
-                Region: shared.RegionNameEasternAsia.ToPointer(),
-                State: globalpinggo.String("quod"),
+                AdditionalProperties: map[string]interface{}{
+                    "superstructure": "Funk",
+                },
                 Tags: []string{
-                    "quod",
+                    "Analyst",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "esse",
-        Type: shared.MeasurementTypeDNS,
+        MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
+                shared.MeasurementMtrOptions{
+                    AdditionalProperties: map[string]interface{}{
+                        "driver": "Southwest",
+                    },
+                },
+        ),
+        Target: "neutral",
+        Type: shared.MeasurementTypeHTTP,
     })
     if err != nil {
         log.Fatal(err)
@@ -76,4 +79,60 @@ func main() {
 ### Response
 
 **[*operations.CreateMeasurementResponse](../../models/operations/createmeasurementresponse.md), error**
+
+
+## GetMeasurement
+
+Retrieves data of an existing measurement.
+A link to this endpoint is returned in the `Location` response header when creating the measurement.
+The measurement is typically available for up to 7 days after creation.
+
+### Client guidelines
+
+- Use the following algorithm for measurement result pooling:
+  1. Request the measurement status.
+  2. If the status is `in-progress`, wait 500 ms and repeat from step 1. Note that it is important to wait 500 ms *after* receiving the response, instead of simply using an "every 500 ms" interval. For large measurements, the request itself may take a few hundred milliseconds to complete.
+  3. If the status is anything else, stop. The measurement is no longer running. Any value other than `in-progress` is final.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
+)
+
+func main() {
+    s := globalpinggo.New()
+
+    ctx := context.Background()
+    res, err := s.Measurements.GetMeasurement(ctx, operations.GetMeasurementRequest{
+        ID: "<ID>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.GetMeasurement200ApplicationJSONObject != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetMeasurementRequest](../../models/operations/getmeasurementrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[*operations.GetMeasurementResponse](../../models/operations/getmeasurementresponse.md), error**
 

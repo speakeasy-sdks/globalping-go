@@ -15,27 +15,28 @@ func main() {
     s := globalpinggo.New()
 
     ctx := context.Background()
-    res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(548814),
+    res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
+        AdditionalProperties: map[string]interface{}{
+            "Florida": "salmon",
+        },
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(592845),
-                City: globalpinggo.String("Sporerstead"),
-                Continent: shared.ContinentCodeSa.ToPointer(),
-                Country: globalpinggo.String("Mali"),
-                Limit: globalpinggo.Int64(847252),
-                Magic: globalpinggo.String("vel"),
-                Network: globalpinggo.String("error"),
-                Region: shared.RegionNameEasternEurope.ToPointer(),
-                State: globalpinggo.String("suscipit"),
+                AdditionalProperties: map[string]interface{}{
+                    "superstructure": "Funk",
+                },
                 Tags: []string{
-                    "iure",
+                    "Analyst",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "magnam",
+        MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
+                shared.MeasurementMtrOptions{
+                    AdditionalProperties: map[string]interface{}{
+                        "driver": "Southwest",
+                    },
+                },
+        ),
+        Target: "neutral",
         Type: shared.MeasurementTypeHTTP,
     })
     if err != nil {

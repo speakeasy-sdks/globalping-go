@@ -7,7 +7,8 @@ import (
 )
 
 type MeasurementPingOptions struct {
-	Packets *int64 `default:"3" json:"packets"`
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
+	Packets              *int64                 `default:"3" json:"packets"`
 }
 
 func (m MeasurementPingOptions) MarshalJSON() ([]byte, error) {
@@ -19,6 +20,13 @@ func (m *MeasurementPingOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *MeasurementPingOptions) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MeasurementPingOptions) GetPackets() *int64 {

@@ -100,7 +100,8 @@ func (e *MeasurementDNSOptionsQueryType) UnmarshalJSON(data []byte) error {
 
 // MeasurementDNSOptionsQuery - The DNS query properties.
 type MeasurementDNSOptionsQuery struct {
-	Type *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
+	AdditionalProperties map[string]interface{}          `additionalProperties:"true" json:"-"`
+	Type                 *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
 }
 
 func (m MeasurementDNSOptionsQuery) MarshalJSON() ([]byte, error) {
@@ -114,6 +115,13 @@ func (m *MeasurementDNSOptionsQuery) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (o *MeasurementDNSOptionsQuery) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 	if o == nil {
 		return nil
@@ -122,12 +130,13 @@ func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 }
 
 type MeasurementDNSOptions struct {
-	Port     *int64                         `default:"53" json:"port"`
-	Protocol *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
+	AdditionalProperties map[string]interface{}         `additionalProperties:"true" json:"-"`
+	Port                 *int64                         `default:"53" json:"port"`
+	Protocol             *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
 	// The DNS query properties.
 	Query *MeasurementDNSOptionsQuery `json:"query,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
-	Resolver interface{} `json:"resolver,omitempty"`
+	Resolver *string `json:"resolver,omitempty"`
 	// Toggles tracing of the delegation path from the root servers down to the target domain name.
 	//
 	Trace *bool `default:"false" json:"trace"`
@@ -142,6 +151,13 @@ func (m *MeasurementDNSOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *MeasurementDNSOptions) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MeasurementDNSOptions) GetPort() *int64 {
@@ -165,7 +181,7 @@ func (o *MeasurementDNSOptions) GetQuery() *MeasurementDNSOptionsQuery {
 	return o.Query
 }
 
-func (o *MeasurementDNSOptions) GetResolver() interface{} {
+func (o *MeasurementDNSOptions) GetResolver() *string {
 	if o == nil {
 		return nil
 	}

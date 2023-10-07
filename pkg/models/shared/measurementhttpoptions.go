@@ -67,6 +67,7 @@ func (e *MeasurementHTTPOptionsRequestMethod) UnmarshalJSON(data []byte) error {
 
 // MeasurementHTTPOptionsRequest - The HTTP request properties.
 type MeasurementHTTPOptionsRequest struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Additional request headers. Note that the `Host` and `User-Agent` are reserved and internally overridden.
 	//
 	Headers map[string]string `json:"headers,omitempty"`
@@ -87,6 +88,13 @@ func (m *MeasurementHTTPOptionsRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *MeasurementHTTPOptionsRequest) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MeasurementHTTPOptionsRequest) GetHeaders() map[string]string {
@@ -125,12 +133,13 @@ func (o *MeasurementHTTPOptionsRequest) GetQuery() *string {
 }
 
 type MeasurementHTTPOptions struct {
-	Port     *int64                          `default:"80" json:"port"`
-	Protocol *MeasurementHTTPOptionsProtocol `default:"HTTPS" json:"protocol"`
+	AdditionalProperties map[string]interface{}          `additionalProperties:"true" json:"-"`
+	Port                 *int64                          `default:"80" json:"port"`
+	Protocol             *MeasurementHTTPOptionsProtocol `default:"HTTPS" json:"protocol"`
 	// The HTTP request properties.
 	Request *MeasurementHTTPOptionsRequest `json:"request,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
-	Resolver interface{} `json:"resolver,omitempty"`
+	Resolver *string `json:"resolver,omitempty"`
 }
 
 func (m MeasurementHTTPOptions) MarshalJSON() ([]byte, error) {
@@ -142,6 +151,13 @@ func (m *MeasurementHTTPOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *MeasurementHTTPOptions) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MeasurementHTTPOptions) GetPort() *int64 {
@@ -165,7 +181,7 @@ func (o *MeasurementHTTPOptions) GetRequest() *MeasurementHTTPOptionsRequest {
 	return o.Request
 }
 
-func (o *MeasurementHTTPOptions) GetResolver() interface{} {
+func (o *MeasurementHTTPOptions) GetResolver() *string {
 	if o == nil {
 		return nil
 	}

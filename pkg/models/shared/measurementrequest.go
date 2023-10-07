@@ -7,6 +7,7 @@ import (
 )
 
 type MeasurementRequest struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Specifies if the results of the measurement should be updated while being in progress.
 	// If `false`, results are populated to the measurement object only after the test finishes.
 	// If `true`, partial results are returned as soon as they are available and can be presented to the user in real-time.
@@ -38,6 +39,13 @@ func (m *MeasurementRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *MeasurementRequest) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *MeasurementRequest) GetInProgressUpdates() *bool {

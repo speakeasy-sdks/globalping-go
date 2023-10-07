@@ -24,28 +24,29 @@ func main() {
     s := globalpinggo.New()
 
     ctx := context.Background()
-    res, err := s.Measurements.CreateMeasurement(ctx, shared.MeasurementRequest{
-        InProgressUpdates: globalpinggo.Bool(false),
-        Limit: globalpinggo.Int64(56713),
+    res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
+        AdditionalProperties: map[string]interface{}{
+            "Florida": "salmon",
+        },
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                Asn: globalpinggo.Int64(963663),
-                City: globalpinggo.String("South Jasper"),
-                Continent: shared.ContinentCodeOc.ToPointer(),
-                Country: globalpinggo.String("Slovenia"),
-                Limit: globalpinggo.Int64(528895),
-                Magic: globalpinggo.String("iusto"),
-                Network: globalpinggo.String("excepturi"),
-                Region: shared.RegionNameNorthernAmerica.ToPointer(),
-                State: globalpinggo.String("recusandae"),
+                AdditionalProperties: map[string]interface{}{
+                    "superstructure": "Funk",
+                },
                 Tags: []string{
-                    "temporibus",
+                    "Analyst",
                 },
             },
         },
-        MeasurementOptions: &shared.MeasurementOptions{},
-        Target: "ab",
-        Type: shared.MeasurementTypeTraceroute,
+        MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
+                shared.MeasurementMtrOptions{
+                    AdditionalProperties: map[string]interface{}{
+                        "driver": "Southwest",
+                    },
+                },
+        ),
+        Target: "neutral",
+        Type: shared.MeasurementTypeHTTP,
     })
     if err != nil {
         log.Fatal(err)
@@ -65,6 +66,7 @@ func main() {
 ### [Measurements](docs/sdks/measurements/README.md)
 
 * [CreateMeasurement](docs/sdks/measurements/README.md#createmeasurement) - Create measurement
+* [GetMeasurement](docs/sdks/measurements/README.md#getmeasurement) - Get measurement
 
 ### [Probes](docs/sdks/probes/README.md)
 
@@ -74,8 +76,6 @@ func main() {
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 
@@ -89,8 +89,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 
