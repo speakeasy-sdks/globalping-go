@@ -39,10 +39,9 @@ func (e *MeasurementMtrOptionsProtocol) UnmarshalJSON(data []byte) error {
 }
 
 type MeasurementMtrOptions struct {
-	AdditionalProperties map[string]interface{}         `additionalProperties:"true" json:"-"`
-	Packets              *int64                         `default:"3" json:"packets"`
-	Port                 *int64                         `default:"80" json:"port"`
-	Protocol             *MeasurementMtrOptionsProtocol `default:"ICMP" json:"protocol"`
+	Packets  *int64                         `default:"3" json:"packets"`
+	Port     *int64                         `default:"80" json:"port"`
+	Protocol *MeasurementMtrOptionsProtocol `default:"ICMP" json:"protocol"`
 }
 
 func (m MeasurementMtrOptions) MarshalJSON() ([]byte, error) {
@@ -54,13 +53,6 @@ func (m *MeasurementMtrOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *MeasurementMtrOptions) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *MeasurementMtrOptions) GetPackets() *int64 {

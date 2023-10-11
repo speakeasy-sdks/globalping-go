@@ -7,7 +7,6 @@ import (
 )
 
 type MeasurementLocationOption struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// An autonomous system number.
 	Asn *int64 `json:"asn,omitempty"`
 	// A city name in English.
@@ -48,13 +47,6 @@ func (m *MeasurementLocationOption) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *MeasurementLocationOption) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *MeasurementLocationOption) GetAsn() *int64 {

@@ -35,28 +35,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-        AdditionalProperties: map[string]interface{}{
-            "Florida": "salmon",
-        },
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
-                AdditionalProperties: map[string]interface{}{
-                    "superstructure": "Funk",
-                },
                 Tags: []string{
-                    "Analyst",
+                    "Florida",
                 },
             },
         },
         MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
-                shared.MeasurementMtrOptions{
-                    AdditionalProperties: map[string]interface{}{
-                        "driver": "Southwest",
-                    },
-                },
+                shared.MeasurementMtrOptions{},
         ),
-        Target: "neutral",
-        Type: shared.MeasurementTypeHTTP,
+        Target: "superstructure Funk",
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)

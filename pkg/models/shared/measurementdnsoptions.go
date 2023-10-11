@@ -100,8 +100,7 @@ func (e *MeasurementDNSOptionsQueryType) UnmarshalJSON(data []byte) error {
 
 // MeasurementDNSOptionsQuery - The DNS query properties.
 type MeasurementDNSOptionsQuery struct {
-	AdditionalProperties map[string]interface{}          `additionalProperties:"true" json:"-"`
-	Type                 *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
+	Type *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
 }
 
 func (m MeasurementDNSOptionsQuery) MarshalJSON() ([]byte, error) {
@@ -115,13 +114,6 @@ func (m *MeasurementDNSOptionsQuery) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MeasurementDNSOptionsQuery) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
-}
-
 func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 	if o == nil {
 		return nil
@@ -130,9 +122,8 @@ func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 }
 
 type MeasurementDNSOptions struct {
-	AdditionalProperties map[string]interface{}         `additionalProperties:"true" json:"-"`
-	Port                 *int64                         `default:"53" json:"port"`
-	Protocol             *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
+	Port     *int64                         `default:"53" json:"port"`
+	Protocol *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
 	// The DNS query properties.
 	Query *MeasurementDNSOptionsQuery `json:"query,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
@@ -151,13 +142,6 @@ func (m *MeasurementDNSOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *MeasurementDNSOptions) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *MeasurementDNSOptions) GetPort() *int64 {
