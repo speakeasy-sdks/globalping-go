@@ -69,3 +69,13 @@ Based on:
 - [go v0.5.1] .
 ### Releases
 - [Go v0.5.1] https://github.com/speakeasy-sdks/globalping-go/releases/tag/v0.5.1 - .
+
+## 2023-10-18 00:41:14
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.101.0 (2.161.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.5.2] .
+### Releases
+- [Go v0.5.2] https://github.com/speakeasy-sdks/globalping-go/releases/tag/v0.5.2 - .

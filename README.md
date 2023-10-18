@@ -35,8 +35,8 @@ func main() {
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
 			shared.MeasurementMtrOptions{},
 		),
-		Target: "superstructure Funk",
-		Type:   shared.MeasurementTypeMtr,
+		Target: "nisi",
+		Type:   shared.MeasurementTypeHTTP,
 	})
 	if err != nil {
 		log.Fatal(err)
