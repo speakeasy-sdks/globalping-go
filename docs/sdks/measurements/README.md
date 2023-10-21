@@ -38,15 +38,15 @@ func main() {
         Locations: []shared.MeasurementLocationOption{
             shared.MeasurementLocationOption{
                 Tags: []string{
-                    "Florida",
+                    "string",
                 },
             },
         },
-        MeasurementOptions: shared.CreateMeasurementOptionsMeasurementMtrOptions(
-                shared.MeasurementMtrOptions{},
+        MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
+                shared.MeasurementPingOptions{},
         ),
-        Target: "nisi",
-        Type: shared.MeasurementTypeHTTP,
+        Target: "string",
+        Type: shared.MeasurementTypePing,
     })
     if err != nil {
         log.Fatal(err)
