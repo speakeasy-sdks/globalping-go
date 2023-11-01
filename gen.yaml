@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 67d7463e76861b914c1f7ff235401df4
   docVersion: 1.0.0
-  speakeasyVersion: 1.104.0
-  generationVersion: 2.169.0
+  speakeasyVersion: 1.109.2
+  generationVersion: 2.173.0
 generation:
   comments:
     disableComments: false
@@ -18,9 +18,9 @@ features:
     constsAndDefaults: 0.1.1
     core: 2.94.0
     globalServerURLs: 2.82.0
-    unions: 2.84.0
+    unions: 2.84.1
 go:
-  version: 0.6.0
+  version: 0.6.1
   flattenGlobalSecurity: true
   installationURL: https://github.com/speakeasy-sdks/globalping-go
   maxMethodParams: 0

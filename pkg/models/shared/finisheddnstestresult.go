@@ -41,16 +41,16 @@ func CreateFinishedDNSTestResultFinishedTraceDNSTestResult(finishedTraceDNSTestR
 
 func (u *FinishedDNSTestResult) UnmarshalJSON(data []byte) error {
 
-	finishedTraceDNSTestResult := new(FinishedTraceDNSTestResult)
+	finishedTraceDNSTestResult := FinishedTraceDNSTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedTraceDNSTestResult, "", true, true); err == nil {
-		u.FinishedTraceDNSTestResult = finishedTraceDNSTestResult
+		u.FinishedTraceDNSTestResult = &finishedTraceDNSTestResult
 		u.Type = FinishedDNSTestResultTypeFinishedTraceDNSTestResult
 		return nil
 	}
 
-	finishedSimpleDNSTestResult := new(FinishedSimpleDNSTestResult)
+	finishedSimpleDNSTestResult := FinishedSimpleDNSTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedSimpleDNSTestResult, "", true, true); err == nil {
-		u.FinishedSimpleDNSTestResult = finishedSimpleDNSTestResult
+		u.FinishedSimpleDNSTestResult = &finishedSimpleDNSTestResult
 		u.Type = FinishedDNSTestResultTypeFinishedSimpleDNSTestResult
 		return nil
 	}

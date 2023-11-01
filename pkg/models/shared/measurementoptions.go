@@ -74,37 +74,37 @@ func CreateMeasurementOptionsMeasurementHTTPOptions(measurementHTTPOptions Measu
 
 func (u *MeasurementOptions) UnmarshalJSON(data []byte) error {
 
-	measurementPingOptions := new(MeasurementPingOptions)
+	measurementPingOptions := MeasurementPingOptions{}
 	if err := utils.UnmarshalJSON(data, &measurementPingOptions, "", true, true); err == nil {
-		u.MeasurementPingOptions = measurementPingOptions
+		u.MeasurementPingOptions = &measurementPingOptions
 		u.Type = MeasurementOptionsTypeMeasurementPingOptions
 		return nil
 	}
 
-	measurementTracerouteOptions := new(MeasurementTracerouteOptions)
+	measurementTracerouteOptions := MeasurementTracerouteOptions{}
 	if err := utils.UnmarshalJSON(data, &measurementTracerouteOptions, "", true, true); err == nil {
-		u.MeasurementTracerouteOptions = measurementTracerouteOptions
+		u.MeasurementTracerouteOptions = &measurementTracerouteOptions
 		u.Type = MeasurementOptionsTypeMeasurementTracerouteOptions
 		return nil
 	}
 
-	measurementMtrOptions := new(MeasurementMtrOptions)
+	measurementMtrOptions := MeasurementMtrOptions{}
 	if err := utils.UnmarshalJSON(data, &measurementMtrOptions, "", true, true); err == nil {
-		u.MeasurementMtrOptions = measurementMtrOptions
+		u.MeasurementMtrOptions = &measurementMtrOptions
 		u.Type = MeasurementOptionsTypeMeasurementMtrOptions
 		return nil
 	}
 
-	measurementHTTPOptions := new(MeasurementHTTPOptions)
+	measurementHTTPOptions := MeasurementHTTPOptions{}
 	if err := utils.UnmarshalJSON(data, &measurementHTTPOptions, "", true, true); err == nil {
-		u.MeasurementHTTPOptions = measurementHTTPOptions
+		u.MeasurementHTTPOptions = &measurementHTTPOptions
 		u.Type = MeasurementOptionsTypeMeasurementHTTPOptions
 		return nil
 	}
 
-	measurementDNSOptions := new(MeasurementDNSOptions)
+	measurementDNSOptions := MeasurementDNSOptions{}
 	if err := utils.UnmarshalJSON(data, &measurementDNSOptions, "", true, true); err == nil {
-		u.MeasurementDNSOptions = measurementDNSOptions
+		u.MeasurementDNSOptions = &measurementDNSOptions
 		u.Type = MeasurementOptionsTypeMeasurementDNSOptions
 		return nil
 	}

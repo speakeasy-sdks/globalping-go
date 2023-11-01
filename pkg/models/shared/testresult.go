@@ -96,51 +96,51 @@ func CreateTestResultFinishedHTTPTestResult(finishedHTTPTestResult FinishedHTTPT
 
 func (u *TestResult) UnmarshalJSON(data []byte) error {
 
-	inProgressTestResult := new(InProgressTestResult)
+	inProgressTestResult := InProgressTestResult{}
 	if err := utils.UnmarshalJSON(data, &inProgressTestResult, "", true, true); err == nil {
-		u.InProgressTestResult = inProgressTestResult
+		u.InProgressTestResult = &inProgressTestResult
 		u.Type = TestResultTypeInProgressTestResult
 		return nil
 	}
 
-	failedTestResult := new(FailedTestResult)
+	failedTestResult := FailedTestResult{}
 	if err := utils.UnmarshalJSON(data, &failedTestResult, "", true, true); err == nil {
-		u.FailedTestResult = failedTestResult
+		u.FailedTestResult = &failedTestResult
 		u.Type = TestResultTypeFailedTestResult
 		return nil
 	}
 
-	finishedTracerouteTestResult := new(FinishedTracerouteTestResult)
+	finishedTracerouteTestResult := FinishedTracerouteTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedTracerouteTestResult, "", true, true); err == nil {
-		u.FinishedTracerouteTestResult = finishedTracerouteTestResult
+		u.FinishedTracerouteTestResult = &finishedTracerouteTestResult
 		u.Type = TestResultTypeFinishedTracerouteTestResult
 		return nil
 	}
 
-	finishedMtrTestResult := new(FinishedMtrTestResult)
+	finishedMtrTestResult := FinishedMtrTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedMtrTestResult, "", true, true); err == nil {
-		u.FinishedMtrTestResult = finishedMtrTestResult
+		u.FinishedMtrTestResult = &finishedMtrTestResult
 		u.Type = TestResultTypeFinishedMtrTestResult
 		return nil
 	}
 
-	finishedPingTestResult := new(FinishedPingTestResult)
+	finishedPingTestResult := FinishedPingTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedPingTestResult, "", true, true); err == nil {
-		u.FinishedPingTestResult = finishedPingTestResult
+		u.FinishedPingTestResult = &finishedPingTestResult
 		u.Type = TestResultTypeFinishedPingTestResult
 		return nil
 	}
 
-	finishedHTTPTestResult := new(FinishedHTTPTestResult)
+	finishedHTTPTestResult := FinishedHTTPTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedHTTPTestResult, "", true, true); err == nil {
-		u.FinishedHTTPTestResult = finishedHTTPTestResult
+		u.FinishedHTTPTestResult = &finishedHTTPTestResult
 		u.Type = TestResultTypeFinishedHTTPTestResult
 		return nil
 	}
 
-	finishedDNSTestResult := new(FinishedDNSTestResult)
+	finishedDNSTestResult := FinishedDNSTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedDNSTestResult, "", true, true); err == nil {
-		u.FinishedDNSTestResult = finishedDNSTestResult
+		u.FinishedDNSTestResult = &finishedDNSTestResult
 		u.Type = TestResultTypeFinishedDNSTestResult
 		return nil
 	}
