@@ -8,18 +8,18 @@ import (
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
-type MeasurementDNSOptionsProtocol string
+type Protocol string
 
 const (
-	MeasurementDNSOptionsProtocolTCP MeasurementDNSOptionsProtocol = "TCP"
-	MeasurementDNSOptionsProtocolUDP MeasurementDNSOptionsProtocol = "UDP"
+	ProtocolTCP Protocol = "TCP"
+	ProtocolUDP Protocol = "UDP"
 )
 
-func (e MeasurementDNSOptionsProtocol) ToPointer() *MeasurementDNSOptionsProtocol {
+func (e Protocol) ToPointer() *Protocol {
 	return &e
 }
 
-func (e *MeasurementDNSOptionsProtocol) UnmarshalJSON(data []byte) error {
+func (e *Protocol) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,37 +28,37 @@ func (e *MeasurementDNSOptionsProtocol) UnmarshalJSON(data []byte) error {
 	case "TCP":
 		fallthrough
 	case "UDP":
-		*e = MeasurementDNSOptionsProtocol(v)
+		*e = Protocol(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MeasurementDNSOptionsProtocol: %v", v)
+		return fmt.Errorf("invalid value for Protocol: %v", v)
 	}
 }
 
-type MeasurementDNSOptionsQueryType string
+type Type string
 
 const (
-	MeasurementDNSOptionsQueryTypeA      MeasurementDNSOptionsQueryType = "A"
-	MeasurementDNSOptionsQueryTypeAaaa   MeasurementDNSOptionsQueryType = "AAAA"
-	MeasurementDNSOptionsQueryTypeAny    MeasurementDNSOptionsQueryType = "ANY"
-	MeasurementDNSOptionsQueryTypeCname  MeasurementDNSOptionsQueryType = "CNAME"
-	MeasurementDNSOptionsQueryTypeDnskey MeasurementDNSOptionsQueryType = "DNSKEY"
-	MeasurementDNSOptionsQueryTypeDs     MeasurementDNSOptionsQueryType = "DS"
-	MeasurementDNSOptionsQueryTypeMx     MeasurementDNSOptionsQueryType = "MX"
-	MeasurementDNSOptionsQueryTypeNs     MeasurementDNSOptionsQueryType = "NS"
-	MeasurementDNSOptionsQueryTypeNsec   MeasurementDNSOptionsQueryType = "NSEC"
-	MeasurementDNSOptionsQueryTypePtr    MeasurementDNSOptionsQueryType = "PTR"
-	MeasurementDNSOptionsQueryTypeRrsig  MeasurementDNSOptionsQueryType = "RRSIG"
-	MeasurementDNSOptionsQueryTypeSoa    MeasurementDNSOptionsQueryType = "SOA"
-	MeasurementDNSOptionsQueryTypeTxt    MeasurementDNSOptionsQueryType = "TXT"
-	MeasurementDNSOptionsQueryTypeSrv    MeasurementDNSOptionsQueryType = "SRV"
+	TypeA      Type = "A"
+	TypeAaaa   Type = "AAAA"
+	TypeAny    Type = "ANY"
+	TypeCname  Type = "CNAME"
+	TypeDnskey Type = "DNSKEY"
+	TypeDs     Type = "DS"
+	TypeMx     Type = "MX"
+	TypeNs     Type = "NS"
+	TypeNsec   Type = "NSEC"
+	TypePtr    Type = "PTR"
+	TypeRrsig  Type = "RRSIG"
+	TypeSoa    Type = "SOA"
+	TypeTxt    Type = "TXT"
+	TypeSrv    Type = "SRV"
 )
 
-func (e MeasurementDNSOptionsQueryType) ToPointer() *MeasurementDNSOptionsQueryType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *MeasurementDNSOptionsQueryType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -91,30 +91,30 @@ func (e *MeasurementDNSOptionsQueryType) UnmarshalJSON(data []byte) error {
 	case "TXT":
 		fallthrough
 	case "SRV":
-		*e = MeasurementDNSOptionsQueryType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MeasurementDNSOptionsQueryType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
-// MeasurementDNSOptionsQuery - The DNS query properties.
-type MeasurementDNSOptionsQuery struct {
-	Type *MeasurementDNSOptionsQueryType `default:"A" json:"type"`
+// Query - The DNS query properties.
+type Query struct {
+	Type *Type `default:"A" json:"type"`
 }
 
-func (m MeasurementDNSOptionsQuery) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
+func (q Query) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
 }
 
-func (m *MeasurementDNSOptionsQuery) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+func (q *Query) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
+func (o *Query) GetType() *Type {
 	if o == nil {
 		return nil
 	}
@@ -122,10 +122,10 @@ func (o *MeasurementDNSOptionsQuery) GetType() *MeasurementDNSOptionsQueryType {
 }
 
 type MeasurementDNSOptions struct {
-	Port     *int64                         `default:"53" json:"port"`
-	Protocol *MeasurementDNSOptionsProtocol `default:"UDP" json:"protocol"`
+	Port     *int64    `default:"53" json:"port"`
+	Protocol *Protocol `default:"UDP" json:"protocol"`
 	// The DNS query properties.
-	Query *MeasurementDNSOptionsQuery `json:"query,omitempty"`
+	Query *Query `json:"query,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
 	Resolver *string `json:"resolver,omitempty"`
 	// Toggles tracing of the delegation path from the root servers down to the target domain name.
@@ -151,14 +151,14 @@ func (o *MeasurementDNSOptions) GetPort() *int64 {
 	return o.Port
 }
 
-func (o *MeasurementDNSOptions) GetProtocol() *MeasurementDNSOptionsProtocol {
+func (o *MeasurementDNSOptions) GetProtocol() *Protocol {
 	if o == nil {
 		return nil
 	}
 	return o.Protocol
 }
 
-func (o *MeasurementDNSOptions) GetQuery() *MeasurementDNSOptionsQuery {
+func (o *MeasurementDNSOptions) GetQuery() *Query {
 	if o == nil {
 		return nil
 	}

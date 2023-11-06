@@ -6,12 +6,12 @@ import (
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
-type FinishedTracerouteTestResultHopsTimings struct {
+type FinishedTracerouteTestResultTimings struct {
 	// The round-trip time for this packet.
 	Rtt float64 `json:"rtt"`
 }
 
-func (o *FinishedTracerouteTestResultHopsTimings) GetRtt() float64 {
+func (o *FinishedTracerouteTestResultTimings) GetRtt() float64 {
 	if o == nil {
 		return 0.0
 	}
@@ -26,7 +26,7 @@ type FinishedTracerouteTestResultHops struct {
 	// Details for each sent packet.
 	// All times are in milliseconds.
 	//
-	Timings []FinishedTracerouteTestResultHopsTimings `json:"timings"`
+	Timings []FinishedTracerouteTestResultTimings `json:"timings"`
 }
 
 func (o *FinishedTracerouteTestResultHops) GetResolvedAddress() string {
@@ -43,9 +43,9 @@ func (o *FinishedTracerouteTestResultHops) GetResolvedHostname() *string {
 	return o.ResolvedHostname
 }
 
-func (o *FinishedTracerouteTestResultHops) GetTimings() []FinishedTracerouteTestResultHopsTimings {
+func (o *FinishedTracerouteTestResultHops) GetTimings() []FinishedTracerouteTestResultTimings {
 	if o == nil {
-		return []FinishedTracerouteTestResultHopsTimings{}
+		return []FinishedTracerouteTestResultTimings{}
 	}
 	return o.Timings
 }

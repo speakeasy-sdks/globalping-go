@@ -6,9 +6,9 @@ import (
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
-// FinishedMtrTestResultHopsStats - Summary `rtt` and packet loss statistics.
+// FinishedMtrTestResultStats - Summary `rtt` and packet loss statistics.
 // All times are in milliseconds.
-type FinishedMtrTestResultHopsStats struct {
+type FinishedMtrTestResultStats struct {
 	// The average `rtt` value.
 	Avg float64 `json:"avg"`
 	// The number of dropped packets (`total` - `rcv`).
@@ -33,96 +33,96 @@ type FinishedMtrTestResultHopsStats struct {
 	Total int64 `json:"total"`
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetAvg() float64 {
+func (o *FinishedMtrTestResultStats) GetAvg() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Avg
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetDrop() int64 {
+func (o *FinishedMtrTestResultStats) GetDrop() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Drop
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetJAvg() float64 {
+func (o *FinishedMtrTestResultStats) GetJAvg() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.JAvg
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetJMax() float64 {
+func (o *FinishedMtrTestResultStats) GetJMax() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.JMax
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetJMin() float64 {
+func (o *FinishedMtrTestResultStats) GetJMin() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.JMin
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetLoss() float64 {
+func (o *FinishedMtrTestResultStats) GetLoss() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Loss
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetMax() float64 {
+func (o *FinishedMtrTestResultStats) GetMax() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Max
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetMin() float64 {
+func (o *FinishedMtrTestResultStats) GetMin() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Min
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetRcv() int64 {
+func (o *FinishedMtrTestResultStats) GetRcv() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Rcv
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetStDev() float64 {
+func (o *FinishedMtrTestResultStats) GetStDev() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.StDev
 }
 
-func (o *FinishedMtrTestResultHopsStats) GetTotal() int64 {
+func (o *FinishedMtrTestResultStats) GetTotal() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Total
 }
 
-type FinishedMtrTestResultHopsTimings struct {
+type FinishedMtrTestResultTimings struct {
 	// The round-trip time for this packet.
 	Rtt float64 `json:"rtt"`
 }
 
-func (o *FinishedMtrTestResultHopsTimings) GetRtt() float64 {
+func (o *FinishedMtrTestResultTimings) GetRtt() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Rtt
 }
 
-type FinishedMtrTestResultHops struct {
+type Hops struct {
 	// The list of ASNs assigned to this hop.
 	Asn              []int64 `json:"asn"`
 	ResolvedAddress  string  `json:"resolvedAddress"`
@@ -130,50 +130,50 @@ type FinishedMtrTestResultHops struct {
 	// Summary `rtt` and packet loss statistics.
 	// All times are in milliseconds.
 	//
-	Stats FinishedMtrTestResultHopsStats `json:"stats"`
+	Stats FinishedMtrTestResultStats `json:"stats"`
 	// Details for each sent packet.
 	// All times are in milliseconds.
 	//
-	Timings []FinishedMtrTestResultHopsTimings `json:"timings"`
+	Timings []FinishedMtrTestResultTimings `json:"timings"`
 }
 
-func (o *FinishedMtrTestResultHops) GetAsn() []int64 {
+func (o *Hops) GetAsn() []int64 {
 	if o == nil {
 		return []int64{}
 	}
 	return o.Asn
 }
 
-func (o *FinishedMtrTestResultHops) GetResolvedAddress() string {
+func (o *Hops) GetResolvedAddress() string {
 	if o == nil {
 		return ""
 	}
 	return o.ResolvedAddress
 }
 
-func (o *FinishedMtrTestResultHops) GetResolvedHostname() *string {
+func (o *Hops) GetResolvedHostname() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ResolvedHostname
 }
 
-func (o *FinishedMtrTestResultHops) GetStats() FinishedMtrTestResultHopsStats {
+func (o *Hops) GetStats() FinishedMtrTestResultStats {
 	if o == nil {
-		return FinishedMtrTestResultHopsStats{}
+		return FinishedMtrTestResultStats{}
 	}
 	return o.Stats
 }
 
-func (o *FinishedMtrTestResultHops) GetTimings() []FinishedMtrTestResultHopsTimings {
+func (o *Hops) GetTimings() []FinishedMtrTestResultTimings {
 	if o == nil {
-		return []FinishedMtrTestResultHopsTimings{}
+		return []FinishedMtrTestResultTimings{}
 	}
 	return o.Timings
 }
 
 type FinishedMtrTestResult struct {
-	Hops []FinishedMtrTestResultHops `json:"hops"`
+	Hops []Hops `json:"hops"`
 	// The raw output can be presented to users but is not meant to be parsed clients.
 	// Please use the individual values provided in other fields for automated processing.
 	//
@@ -196,9 +196,9 @@ func (f *FinishedMtrTestResult) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *FinishedMtrTestResult) GetHops() []FinishedMtrTestResultHops {
+func (o *FinishedMtrTestResult) GetHops() []Hops {
 	if o == nil {
-		return []FinishedMtrTestResultHops{}
+		return []Hops{}
 	}
 	return o.Hops
 }

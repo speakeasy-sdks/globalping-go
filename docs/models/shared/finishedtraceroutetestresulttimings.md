@@ -1,4 +1,4 @@
-# FinishedTracerouteTestResultHopsTimings
+# FinishedTracerouteTestResultTimings
 
 
 ## Fields

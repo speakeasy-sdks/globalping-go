@@ -15,19 +15,19 @@ import (
 	"strings"
 )
 
-type probes struct {
+type Probes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newProbes(sdkConfig sdkConfiguration) *probes {
-	return &probes{
+func newProbes(sdkConfig sdkConfiguration) *Probes {
+	return &Probes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // ListProbes - List currently connected probes
 // Returns a list of all currently connected probes and their metadata.
-func (s *probes) ListProbes(ctx context.Context) (*operations.ListProbesResponse, error) {
+func (s *Probes) ListProbes(ctx context.Context) (*operations.ListProbesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/probes"
 
@@ -75,6 +75,10 @@ func (s *probes) ListProbes(ctx context.Context) (*operations.ListProbesResponse
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

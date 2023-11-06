@@ -7,107 +7,6 @@ import (
 	"net/http"
 )
 
-type CreateMeasurement429ApplicationJSONError struct {
-	Message string `json:"message"`
-	Type    string `json:"type"`
-}
-
-func (o *CreateMeasurement429ApplicationJSONError) GetMessage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Message
-}
-
-func (o *CreateMeasurement429ApplicationJSONError) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// CreateMeasurement429ApplicationJSON - Too Many Requests
-type CreateMeasurement429ApplicationJSON struct {
-	Error CreateMeasurement429ApplicationJSONError `json:"error"`
-}
-
-func (o *CreateMeasurement429ApplicationJSON) GetError() CreateMeasurement429ApplicationJSONError {
-	if o == nil {
-		return CreateMeasurement429ApplicationJSONError{}
-	}
-	return o.Error
-}
-
-type CreateMeasurement422ApplicationJSONError struct {
-	Message string `json:"message"`
-	Type    string `json:"type"`
-}
-
-func (o *CreateMeasurement422ApplicationJSONError) GetMessage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Message
-}
-
-func (o *CreateMeasurement422ApplicationJSONError) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// CreateMeasurement422ApplicationJSON - Unprocessable Entity
-type CreateMeasurement422ApplicationJSON struct {
-	Error CreateMeasurement422ApplicationJSONError `json:"error"`
-}
-
-func (o *CreateMeasurement422ApplicationJSON) GetError() CreateMeasurement422ApplicationJSONError {
-	if o == nil {
-		return CreateMeasurement422ApplicationJSONError{}
-	}
-	return o.Error
-}
-
-type CreateMeasurement400ApplicationJSONError struct {
-	Message string            `json:"message"`
-	Params  map[string]string `json:"params,omitempty"`
-	Type    string            `json:"type"`
-}
-
-func (o *CreateMeasurement400ApplicationJSONError) GetMessage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Message
-}
-
-func (o *CreateMeasurement400ApplicationJSONError) GetParams() map[string]string {
-	if o == nil {
-		return nil
-	}
-	return o.Params
-}
-
-func (o *CreateMeasurement400ApplicationJSONError) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// CreateMeasurement400ApplicationJSON - Bad Request
-type CreateMeasurement400ApplicationJSON struct {
-	Error CreateMeasurement400ApplicationJSONError `json:"error"`
-}
-
-func (o *CreateMeasurement400ApplicationJSON) GetError() CreateMeasurement400ApplicationJSONError {
-	if o == nil {
-		return CreateMeasurement400ApplicationJSONError{}
-	}
-	return o.Error
-}
-
 type CreateMeasurementResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -118,12 +17,6 @@ type CreateMeasurementResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Bad Request
-	CreateMeasurement400ApplicationJSONObject *CreateMeasurement400ApplicationJSON
-	// Unprocessable Entity
-	CreateMeasurement422ApplicationJSONObject *CreateMeasurement422ApplicationJSON
-	// Too Many Requests
-	CreateMeasurement429ApplicationJSONObject *CreateMeasurement429ApplicationJSON
 }
 
 func (o *CreateMeasurementResponse) GetContentType() string {
@@ -159,25 +52,4 @@ func (o *CreateMeasurementResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CreateMeasurementResponse) GetCreateMeasurement400ApplicationJSONObject() *CreateMeasurement400ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateMeasurement400ApplicationJSONObject
-}
-
-func (o *CreateMeasurementResponse) GetCreateMeasurement422ApplicationJSONObject() *CreateMeasurement422ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateMeasurement422ApplicationJSONObject
-}
-
-func (o *CreateMeasurementResponse) GetCreateMeasurement429ApplicationJSONObject() *CreateMeasurement429ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateMeasurement429ApplicationJSONObject
 }

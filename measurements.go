@@ -15,12 +15,12 @@ import (
 	"strings"
 )
 
-type measurements struct {
+type Measurements struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMeasurements(sdkConfig sdkConfiguration) *measurements {
-	return &measurements{
+func newMeasurements(sdkConfig sdkConfiguration) *Measurements {
+	return &Measurements{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -34,7 +34,7 @@ func newMeasurements(sdkConfig sdkConfiguration) *measurements {
 //
 // - Set the `inProgressUpdates` option to `true` if the application is running in interactive mode so that the user sees the results right away.
 //   - If the application is interactive by default but also implements a "CI" mode to be used in scripts, do not set the flag in the CI mode.
-func (s *measurements) CreateMeasurement(ctx context.Context, request *shared.MeasurementRequest) (*operations.CreateMeasurementResponse, error) {
+func (s *Measurements) CreateMeasurement(ctx context.Context, request *shared.MeasurementRequest) (*operations.CreateMeasurementResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/measurements"
 
@@ -94,39 +94,46 @@ func (s *measurements) CreateMeasurement(ctx context.Context, request *shared.Me
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateMeasurement400ApplicationJSON
+			var out sdkerrors.CreateMeasurementResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.CreateMeasurement400ApplicationJSONObject = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateMeasurement422ApplicationJSON
+			var out sdkerrors.CreateMeasurementMeasurementsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.CreateMeasurement422ApplicationJSONObject = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateMeasurement429ApplicationJSON
+			var out sdkerrors.CreateMeasurementMeasurementsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.CreateMeasurement429ApplicationJSONObject = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -143,7 +150,7 @@ func (s *measurements) CreateMeasurement(ctx context.Context, request *shared.Me
 //  1. Request the measurement status.
 //  2. If the status is `in-progress`, wait 500 ms and repeat from step 1. Note that it is important to wait 500 ms *after* receiving the response, instead of simply using an "every 500 ms" interval. For large measurements, the request itself may take a few hundred milliseconds to complete.
 //  3. If the status is anything else, stop. The measurement is no longer running. Any value other than `in-progress` is final.
-func (s *measurements) GetMeasurement(ctx context.Context, request operations.GetMeasurementRequest) (*operations.GetMeasurementResponse, error) {
+func (s *Measurements) GetMeasurement(ctx context.Context, request operations.GetMeasurementRequest) (*operations.GetMeasurementResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/measurements/{id}", request, nil)
 	if err != nil {
@@ -185,27 +192,32 @@ func (s *measurements) GetMeasurement(ctx context.Context, request operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMeasurement200ApplicationJSON
+			var out operations.GetMeasurementResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMeasurement200ApplicationJSONObject = &out
+			res.TwoHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMeasurement404ApplicationJSON
+			var out sdkerrors.GetMeasurementResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.GetMeasurement404ApplicationJSONObject = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

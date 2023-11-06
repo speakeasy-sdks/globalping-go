@@ -2,26 +2,30 @@ configVersion: 1.0.0
 management:
   docChecksum: 67d7463e76861b914c1f7ff235401df4
   docVersion: 1.0.0
-  speakeasyVersion: 1.109.2
-  generationVersion: 2.173.0
+  speakeasyVersion: 1.114.0
+  generationVersion: 2.179.0
 generation:
-  comments:
-    disableComments: false
-    omitDescriptionIfSummaryPresent: false
-  baseServerURL: ""
-  repoURL: https://github.com/speakeasy-sdks/globalping-go.git
+  comments: {}
   sdkClassName: Globalping
-  singleTagPerOp: false
-  tagNamespacingDisabled: false
+  repoURL: https://github.com/speakeasy-sdks/globalping-go.git
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.94.0
+    core: 3.1.0
     globalServerURLs: 2.82.0
-    unions: 2.84.1
+    unions: 2.85.0
 go:
-  version: 0.6.1
+  version: 0.7.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
   installationURL: https://github.com/speakeasy-sdks/globalping-go
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/globalping-go

@@ -1,4 +1,4 @@
-# GetMeasurement404ApplicationJSONError
+# GetMeasurementError
 
 
 ## Fields

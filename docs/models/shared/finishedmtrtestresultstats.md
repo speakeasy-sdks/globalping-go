@@ -1,4 +1,4 @@
-# FinishedMtrTestResultHopsStats
+# FinishedMtrTestResultStats
 
 Summary `rtt` and packet loss statistics.
 All times are in milliseconds.

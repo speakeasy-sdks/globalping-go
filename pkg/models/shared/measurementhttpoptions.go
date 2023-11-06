@@ -38,18 +38,18 @@ func (e *MeasurementHTTPOptionsProtocol) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type MeasurementHTTPOptionsRequestMethod string
+type Method string
 
 const (
-	MeasurementHTTPOptionsRequestMethodHead MeasurementHTTPOptionsRequestMethod = "HEAD"
-	MeasurementHTTPOptionsRequestMethodGet  MeasurementHTTPOptionsRequestMethod = "GET"
+	MethodHead Method = "HEAD"
+	MethodGet  Method = "GET"
 )
 
-func (e MeasurementHTTPOptionsRequestMethod) ToPointer() *MeasurementHTTPOptionsRequestMethod {
+func (e Method) ToPointer() *Method {
 	return &e
 }
 
-func (e *MeasurementHTTPOptionsRequestMethod) UnmarshalJSON(data []byte) error {
+func (e *Method) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -58,66 +58,66 @@ func (e *MeasurementHTTPOptionsRequestMethod) UnmarshalJSON(data []byte) error {
 	case "HEAD":
 		fallthrough
 	case "GET":
-		*e = MeasurementHTTPOptionsRequestMethod(v)
+		*e = Method(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MeasurementHTTPOptionsRequestMethod: %v", v)
+		return fmt.Errorf("invalid value for Method: %v", v)
 	}
 }
 
-// MeasurementHTTPOptionsRequest - The HTTP request properties.
-type MeasurementHTTPOptionsRequest struct {
+// Request - The HTTP request properties.
+type Request struct {
 	// Additional request headers. Note that the `Host` and `User-Agent` are reserved and internally overridden.
 	//
 	Headers map[string]string `json:"headers,omitempty"`
 	// An optional override for the `Host` header. The default value is based on the `target`.
 	//
-	Host   *string                              `json:"host,omitempty"`
-	Method *MeasurementHTTPOptionsRequestMethod `default:"HEAD" json:"method"`
-	Path   *string                              `json:"path,omitempty"`
-	Query  *string                              `json:"query,omitempty"`
+	Host   *string `json:"host,omitempty"`
+	Method *Method `default:"HEAD" json:"method"`
+	Path   *string `json:"path,omitempty"`
+	Query  *string `json:"query,omitempty"`
 }
 
-func (m MeasurementHTTPOptionsRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
+func (r Request) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (m *MeasurementHTTPOptionsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+func (r *Request) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MeasurementHTTPOptionsRequest) GetHeaders() map[string]string {
+func (o *Request) GetHeaders() map[string]string {
 	if o == nil {
 		return nil
 	}
 	return o.Headers
 }
 
-func (o *MeasurementHTTPOptionsRequest) GetHost() *string {
+func (o *Request) GetHost() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Host
 }
 
-func (o *MeasurementHTTPOptionsRequest) GetMethod() *MeasurementHTTPOptionsRequestMethod {
+func (o *Request) GetMethod() *Method {
 	if o == nil {
 		return nil
 	}
 	return o.Method
 }
 
-func (o *MeasurementHTTPOptionsRequest) GetPath() *string {
+func (o *Request) GetPath() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Path
 }
 
-func (o *MeasurementHTTPOptionsRequest) GetQuery() *string {
+func (o *Request) GetQuery() *string {
 	if o == nil {
 		return nil
 	}
@@ -128,7 +128,7 @@ type MeasurementHTTPOptions struct {
 	Port     *int64                          `default:"80" json:"port"`
 	Protocol *MeasurementHTTPOptionsProtocol `default:"HTTPS" json:"protocol"`
 	// The HTTP request properties.
-	Request *MeasurementHTTPOptionsRequest `json:"request,omitempty"`
+	Request *Request `json:"request,omitempty"`
 	// A DNS resolver to use for the query. Defaults to the probe's system resolver.
 	Resolver *string `json:"resolver,omitempty"`
 }
@@ -158,7 +158,7 @@ func (o *MeasurementHTTPOptions) GetProtocol() *MeasurementHTTPOptionsProtocol {
 	return o.Protocol
 }
 
-func (o *MeasurementHTTPOptions) GetRequest() *MeasurementHTTPOptionsRequest {
+func (o *MeasurementHTTPOptions) GetRequest() *Request {
 	if o == nil {
 		return nil
 	}

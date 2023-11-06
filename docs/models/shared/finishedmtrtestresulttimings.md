@@ -1,4 +1,4 @@
-# FinishedMtrTestResultHopsTimings
+# FinishedMtrTestResultTimings
 
 
 ## Fields

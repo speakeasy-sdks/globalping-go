@@ -2,12 +2,12 @@
 
 package shared
 
-type DNSTestHopResultTimings struct {
+type Timings struct {
 	// The total query time in milliseconds.
 	Total float64 `json:"total"`
 }
 
-func (o *DNSTestHopResultTimings) GetTotal() float64 {
+func (o *Timings) GetTotal() float64 {
 	if o == nil {
 		return 0.0
 	}
@@ -18,8 +18,8 @@ type DNSTestHopResult struct {
 	// The list of received resource records.
 	Answers []DNSTestAnswer `json:"answers"`
 	// The hostname or IP of the resolver that answered the query.
-	Resolver string                  `json:"resolver"`
-	Timings  DNSTestHopResultTimings `json:"timings"`
+	Resolver string  `json:"resolver"`
+	Timings  Timings `json:"timings"`
 }
 
 func (o *DNSTestHopResult) GetAnswers() []DNSTestAnswer {
@@ -36,9 +36,9 @@ func (o *DNSTestHopResult) GetResolver() string {
 	return o.Resolver
 }
 
-func (o *DNSTestHopResult) GetTimings() DNSTestHopResultTimings {
+func (o *DNSTestHopResult) GetTimings() Timings {
 	if o == nil {
-		return DNSTestHopResultTimings{}
+		return Timings{}
 	}
 	return o.Timings
 }

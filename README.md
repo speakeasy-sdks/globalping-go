@@ -54,12 +54,12 @@ func main() {
 ## Available Resources and Operations
 
 
-### [Measurements](docs/sdks/measurements/README.md)
+### [.Measurements](docs/sdks/measurements/README.md)
 
 * [CreateMeasurement](docs/sdks/measurements/README.md#createmeasurement) - Create measurement
 * [GetMeasurement](docs/sdks/measurements/README.md#getmeasurement) - Get measurement
 
-### [Probes](docs/sdks/probes/README.md)
+### [.Probes](docs/sdks/probes/README.md)
 
 * [ListProbes](docs/sdks/probes/README.md#listprobes) - List currently connected probes
 <!-- End SDK Available Operations -->
@@ -96,6 +96,60 @@ Here's an example of one such pagination call:
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
 
+## Example
+
+```go
+package main
+
+import (
+	"context"
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := globalpinggo.New()
+
+	ctx := context.Background()
+	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
+		Locations: []shared.MeasurementLocationOption{
+			shared.MeasurementLocationOption{
+				Tags: []string{
+					"string",
+				},
+			},
+		},
+		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
+			shared.MeasurementPingOptions{},
+		),
+		Target: "string",
+		Type:   shared.MeasurementTypePing,
+	})
+	if err != nil {
+
+		var e *sdkerrors.CreateMeasurementResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.CreateMeasurementMeasurementsResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.CreateMeasurementMeasurementsResponseResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+	}
+}
+
+```
 <!-- End Error Handling -->
 
 

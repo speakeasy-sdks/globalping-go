@@ -1,4 +1,4 @@
-# GetMeasurement200ApplicationJSON
+# GetMeasurementResponseBody
 
 Success
 

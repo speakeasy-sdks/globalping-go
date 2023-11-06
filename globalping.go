@@ -77,8 +77,8 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // https://api.globalping.io/v1/
 type Globalping struct {
-	Measurements *measurements
-	Probes       *probes
+	Measurements *Measurements
+	Probes       *Probes
 
 	sdkConfiguration sdkConfiguration
 }
@@ -133,9 +133,9 @@ func New(opts ...SDKOption) *Globalping {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.6.1",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 0.6.1 2.173.0 1.0.0 github.com/speakeasy-sdks/globalping-go",
+			SDKVersion:        "0.7.0",
+			GenVersion:        "2.179.0",
+			UserAgent:         "speakeasy-sdk/go 0.7.0 2.179.0 1.0.0 github.com/speakeasy-sdks/globalping-go",
 		},
 	}
 	for _, opt := range opts {

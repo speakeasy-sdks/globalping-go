@@ -1,4 +1,4 @@
-# CreateMeasurement422ApplicationJSONError
+# CreateMeasurementMeasurementsError
 
 
 ## Fields

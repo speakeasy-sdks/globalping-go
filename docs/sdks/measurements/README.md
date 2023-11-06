@@ -1,5 +1,5 @@
 # Measurements
-(*Measurements*)
+(*.Measurements*)
 
 ### Available Operations
 
@@ -108,7 +108,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMeasurement200ApplicationJSONObject != nil {
+    if res.TwoHundredApplicationJSONObject != nil {
         // handle response
     }
 }

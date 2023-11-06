@@ -1,5 +1,5 @@
 # Probes
-(*Probes*)
+(*.Probes*)
 
 ### Available Operations
 

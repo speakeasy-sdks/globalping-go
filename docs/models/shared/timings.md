@@ -1,4 +1,4 @@
-# DNSTestHopResultTimings
+# Timings
 
 
 ## Fields

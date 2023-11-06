@@ -1,4 +1,4 @@
-# FinishedPingTestResultStats
+# Stats
 
 Summary `rtt` and packet loss statistics.
 All times are in milliseconds.

@@ -6,9 +6,9 @@ import (
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
-// FinishedPingTestResultStats - Summary `rtt` and packet loss statistics.
+// Stats - Summary `rtt` and packet loss statistics.
 // All times are in milliseconds.
-type FinishedPingTestResultStats struct {
+type Stats struct {
 	Avg *float64 `json:"avg"`
 	// The number of dropped packets (`total` - `rcv`).
 	Drop int64 `json:"drop"`
@@ -22,49 +22,49 @@ type FinishedPingTestResultStats struct {
 	Total int64 `json:"total"`
 }
 
-func (o *FinishedPingTestResultStats) GetAvg() *float64 {
+func (o *Stats) GetAvg() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Avg
 }
 
-func (o *FinishedPingTestResultStats) GetDrop() int64 {
+func (o *Stats) GetDrop() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Drop
 }
 
-func (o *FinishedPingTestResultStats) GetLoss() float64 {
+func (o *Stats) GetLoss() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Loss
 }
 
-func (o *FinishedPingTestResultStats) GetMax() *float64 {
+func (o *Stats) GetMax() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Max
 }
 
-func (o *FinishedPingTestResultStats) GetMin() *float64 {
+func (o *Stats) GetMin() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Min
 }
 
-func (o *FinishedPingTestResultStats) GetRcv() int64 {
+func (o *Stats) GetRcv() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Rcv
 }
 
-func (o *FinishedPingTestResultStats) GetTotal() int64 {
+func (o *Stats) GetTotal() int64 {
 	if o == nil {
 		return 0
 	}
@@ -104,8 +104,8 @@ type FinishedPingTestResult struct {
 	// Summary `rtt` and packet loss statistics.
 	// All times are in milliseconds.
 	//
-	Stats  FinishedPingTestResultStats `json:"stats"`
-	status string                      `const:"finished" json:"status"`
+	Stats  Stats  `json:"stats"`
+	status string `const:"finished" json:"status"`
 	// Details for each sent packet.
 	// All times are in milliseconds.
 	//
@@ -144,9 +144,9 @@ func (o *FinishedPingTestResult) GetResolvedHostname() *string {
 	return o.ResolvedHostname
 }
 
-func (o *FinishedPingTestResult) GetStats() FinishedPingTestResultStats {
+func (o *FinishedPingTestResult) GetStats() Stats {
 	if o == nil {
-		return FinishedPingTestResultStats{}
+		return Stats{}
 	}
 	return o.Stats
 }
