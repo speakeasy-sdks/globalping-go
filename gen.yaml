@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 67d7463e76861b914c1f7ff235401df4
+  docChecksum: c318c926e74e4888f452d269e3e847a4
   docVersion: 1.0.0
-  speakeasyVersion: 1.114.0
-  generationVersion: 2.179.0
+  speakeasyVersion: 1.114.1
+  generationVersion: 2.181.1
 generation:
   comments: {}
   sdkClassName: Globalping
@@ -15,7 +15,7 @@ features:
     globalServerURLs: 2.82.0
     unions: 2.85.0
 go:
-  version: 0.7.0
+  version: 0.7.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
