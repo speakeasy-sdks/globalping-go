@@ -1,5 +1,5 @@
 # Measurements
-(*.Measurements*)
+(*Measurements*)
 
 ### Available Operations
 
@@ -60,16 +60,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `request`                                                              | [shared.MeasurementRequest](../../models/shared/measurementrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [shared.MeasurementRequest](../../pkg/models/shared/measurementrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
 
 ### Response
 
-**[*operations.CreateMeasurementResponse](../../models/operations/createmeasurementresponse.md), error**
-
+**[*operations.CreateMeasurementResponse](../../pkg/models/operations/createmeasurementresponse.md), error**
+| Error Object                                                | Status Code                                                 | Content Type                                                |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| sdkerrors.CreateMeasurementResponseBody                     | 400                                                         | application/json                                            |
+| sdkerrors.CreateMeasurementMeasurementsResponseBody         | 422                                                         | application/json                                            |
+| sdkerrors.CreateMeasurementMeasurementsResponseResponseBody | 429                                                         | application/json                                            |
+| sdkerrors.SDKError                                          | 400-600                                                     | */*                                                         |
 
 ## GetMeasurement
 
@@ -116,13 +121,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetMeasurementRequest](../../models/operations/getmeasurementrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetMeasurementRequest](../../pkg/models/operations/getmeasurementrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
 
-**[*operations.GetMeasurementResponse](../../models/operations/getmeasurementresponse.md), error**
-
+**[*operations.GetMeasurementResponse](../../pkg/models/operations/getmeasurementresponse.md), error**
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| sdkerrors.GetMeasurementResponseBody | 404                                  | application/json                     |
+| sdkerrors.SDKError                   | 400-600                              | */*                                  |

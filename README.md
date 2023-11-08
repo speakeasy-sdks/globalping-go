@@ -54,12 +54,12 @@ func main() {
 ## Available Resources and Operations
 
 
-### [.Measurements](docs/sdks/measurements/README.md)
+### [Measurements](docs/sdks/measurements/README.md)
 
 * [CreateMeasurement](docs/sdks/measurements/README.md#createmeasurement) - Create measurement
 * [GetMeasurement](docs/sdks/measurements/README.md#getmeasurement) - Get measurement
 
-### [.Probes](docs/sdks/probes/README.md)
+### [Probes](docs/sdks/probes/README.md)
 
 * [ListProbes](docs/sdks/probes/README.md#listprobes) - List currently connected probes
 <!-- End SDK Available Operations -->
@@ -93,7 +93,14 @@ Here's an example of one such pagination call:
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+| Error Object                                                | Status Code                                                 | Content Type                                                |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| sdkerrors.CreateMeasurementResponseBody                     | 400                                                         | application/json                                            |
+| sdkerrors.CreateMeasurementMeasurementsResponseBody         | 422                                                         | application/json                                            |
+| sdkerrors.CreateMeasurementMeasurementsResponseResponseBody | 429                                                         | application/json                                            |
+| sdkerrors.SDKError                                          | 400-600                                                     | */*                                                         |
 
 
 ## Example
@@ -146,6 +153,11 @@ func main() {
 			log.Fatal(e.Error())
 		}
 
+		var e *sdkerrors.SDKError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
 	}
 }
 

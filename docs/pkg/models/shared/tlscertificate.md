@@ -1,0 +1,15 @@
+# TLSCertificate
+
+The TLS session information.
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Authorized`                                                                              | *bool*                                                                                    | :heavy_check_mark:                                                                        | `true` if the certificate is valid and signed by a trusted authority, `false` otherwise.<br/> |
+| `CreatedAt`                                                                               | [time.Time](https://pkg.go.dev/time#Time)                                                 | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `Error`                                                                                   | **string*                                                                                 | :heavy_minus_sign:                                                                        | The reason for rejecting the certificate if `authorized` is `false`.<br/>                 |
+| `ExpiresAt`                                                                               | [time.Time](https://pkg.go.dev/time#Time)                                                 | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `Issuer`                                                                                  | [shared.TLSCertificateIssuer](../../../pkg/models/shared/tlscertificateissuer.md)         | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `Subject`                                                                                 | [shared.TLSCertificateSubject](../../../pkg/models/shared/tlscertificatesubject.md)       | :heavy_check_mark:                                                                        | N/A                                                                                       |

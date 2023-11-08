@@ -1,5 +1,5 @@
 # Probes
-(*.Probes*)
+(*Probes*)
 
 ### Available Operations
 
@@ -45,5 +45,7 @@ func main() {
 
 ### Response
 
-**[*operations.ListProbesResponse](../../models/operations/listprobesresponse.md), error**
-
+**[*operations.ListProbesResponse](../../pkg/models/operations/listprobesresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
