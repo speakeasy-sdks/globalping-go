@@ -16,9 +16,9 @@ Returns a list of all currently connected probes and their metadata.
 package main
 
 import(
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 	"context"
 	"log"
-	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 )
 
 func main() {
