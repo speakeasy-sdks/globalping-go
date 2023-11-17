@@ -24,10 +24,10 @@ at the URL returned in the `Location` header.
 package main
 
 import(
-	"context"
-	"log"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"context"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -96,10 +96,10 @@ The measurement is typically available for up to 7 days after creation.
 package main
 
 import(
-	"context"
-	"log"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"context"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
