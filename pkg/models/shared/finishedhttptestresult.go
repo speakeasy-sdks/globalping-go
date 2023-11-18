@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/globalping-go/pkg/types"
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
