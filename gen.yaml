@@ -2,20 +2,22 @@ configVersion: 1.0.0
 management:
   docChecksum: c318c926e74e4888f452d269e3e847a4
   docVersion: 1.0.0
-  speakeasyVersion: 1.116.0
-  generationVersion: 2.185.0
+  speakeasyVersion: 1.121.1
+  generationVersion: 2.194.1
 generation:
   comments: {}
   sdkClassName: Globalping
   repoURL: https://github.com/speakeasy-sdks/globalping-go.git
+  usageSnippets:
+    optionalPropertyRendering: withExample
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 3.1.2
-    globalServerURLs: 2.82.0
+    core: 3.1.5
+    globalServerURLs: 2.82.1
     unions: 2.85.0
 go:
-  version: 0.7.2
+  version: 0.7.3
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
