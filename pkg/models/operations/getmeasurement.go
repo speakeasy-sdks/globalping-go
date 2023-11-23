@@ -132,21 +132,14 @@ func (o *GetMeasurementResponseBody) GetUpdatedAt() time.Time {
 }
 
 type GetMeasurementResponse struct {
-	// Success
-	TwoHundredApplicationJSONObject *GetMeasurementResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-}
-
-func (o *GetMeasurementResponse) GetTwoHundredApplicationJSONObject() *GetMeasurementResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.TwoHundredApplicationJSONObject
+	// Success
+	Object *GetMeasurementResponseBody
 }
 
 func (o *GetMeasurementResponse) GetContentType() string {
@@ -168,4 +161,11 @@ func (o *GetMeasurementResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetMeasurementResponse) GetObject() *GetMeasurementResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }
