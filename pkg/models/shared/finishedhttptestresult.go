@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/globalping-go/pkg/types"
 	"github.com/speakeasy-sdks/globalping-go/pkg/utils"
 )
 
@@ -77,6 +78,9 @@ type FinishedHTTPTestResult struct {
 	StatusCodeName string                        `json:"statusCodeName"`
 	Timings        FinishedHTTPTestResultTimings `json:"timings"`
 	TLS            *TLSCertificate               `json:"tls"`
+	// `true` if `rawBody` was truncated due to being too big, `false` otherwise.
+	//
+	Truncated bool `json:"truncated"`
 }
 
 func (f FinishedHTTPTestResult) MarshalJSON() ([]byte, error) {
@@ -155,4 +159,11 @@ func (o *FinishedHTTPTestResult) GetTLS() *TLSCertificate {
 		return nil
 	}
 	return o.TLS
+}
+
+func (o *FinishedHTTPTestResult) GetTruncated() bool {
+	if o == nil {
+		return false
+	}
+	return o.Truncated
 }
