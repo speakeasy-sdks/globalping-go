@@ -56,7 +56,6 @@ pkg/utils/utils.go
 /pkg/models/shared/probelocation.go
 /pkg/models/sdkerrors/createmeasurement.go
 /pkg/models/sdkerrors/getmeasurement.go
-USAGE.md
 docs/pkg/models/operations/createmeasurementresponse.md
 docs/pkg/models/operations/getmeasurementrequest.md
 docs/pkg/models/operations/getmeasurementresponsebody.md
@@ -123,4 +122,5 @@ docs/pkg/models/sdkerrors/getmeasurementresponsebody.md
 docs/sdks/globalping/README.md
 docs/sdks/measurements/README.md
 docs/sdks/probes/README.md
+USAGE.md
 .gitattributes
