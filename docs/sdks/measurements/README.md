@@ -16,6 +16,7 @@ at the URL returned in the `Location` header.
 
 - Set the `inProgressUpdates` option to `true` if the application is running in interactive mode so that the user sees the results right away.
   - If the application is interactive by default but also implements a "CI" mode to be used in scripts, do not set the flag in the CI mode.
+- To perform multiple measurements from exactly the same probes, create a single measurement first, then pass its `id` in the `locations` option for the other measurements.
 
 
 ### Example Usage
@@ -24,10 +25,10 @@ at the URL returned in the `Location` header.
 package main
 
 import(
-	"context"
-	"log"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"context"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -35,18 +36,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-        Locations: []shared.MeasurementLocationOption{
-            shared.MeasurementLocationOption{
-                Tags: []string{
-                    "string",
+        Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+                []shared.MeasurementLocationOption{
+                    shared.MeasurementLocationOption{
+                        Tags: []string{
+                            "string",
+                        },
+                    },
                 },
-            },
-        },
+        ),
         MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
                 shared.MeasurementPingOptions{},
         ),
         Target: "string",
-        Type: shared.MeasurementTypePing,
+        Type: shared.MeasurementTypeMtr,
     })
     if err != nil {
         log.Fatal(err)
@@ -96,10 +99,10 @@ The measurement is typically available for up to 7 days after creation.
 package main
 
 import(
-	"context"
-	"log"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"context"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -113,7 +116,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.TwoHundredApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
