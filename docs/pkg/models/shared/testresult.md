@@ -15,6 +15,12 @@ testResult := shared.CreateTestResultInProgressTestResult(shared.InProgressTestR
 testResult := shared.CreateTestResultFailedTestResult(shared.FailedTestResult{/* values here */})
 ```
 
+### OfflineTestResult
+
+```go
+testResult := shared.CreateTestResultOfflineTestResult(shared.OfflineTestResult{/* values here */})
+```
+
 ### FinishedPingTestResult
 
 ```go
