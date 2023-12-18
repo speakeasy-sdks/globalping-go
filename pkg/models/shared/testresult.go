@@ -12,6 +12,7 @@ type TestResultType string
 const (
 	TestResultTypeInProgressTestResult         TestResultType = "InProgressTestResult"
 	TestResultTypeFailedTestResult             TestResultType = "FailedTestResult"
+	TestResultTypeOfflineTestResult            TestResultType = "OfflineTestResult"
 	TestResultTypeFinishedPingTestResult       TestResultType = "FinishedPingTestResult"
 	TestResultTypeFinishedTracerouteTestResult TestResultType = "FinishedTracerouteTestResult"
 	TestResultTypeFinishedDNSTestResult        TestResultType = "FinishedDnsTestResult"
@@ -22,6 +23,7 @@ const (
 type TestResult struct {
 	InProgressTestResult         *InProgressTestResult
 	FailedTestResult             *FailedTestResult
+	OfflineTestResult            *OfflineTestResult
 	FinishedPingTestResult       *FinishedPingTestResult
 	FinishedTracerouteTestResult *FinishedTracerouteTestResult
 	FinishedDNSTestResult        *FinishedDNSTestResult
@@ -46,6 +48,15 @@ func CreateTestResultFailedTestResult(failedTestResult FailedTestResult) TestRes
 	return TestResult{
 		FailedTestResult: &failedTestResult,
 		Type:             typ,
+	}
+}
+
+func CreateTestResultOfflineTestResult(offlineTestResult OfflineTestResult) TestResult {
+	typ := TestResultTypeOfflineTestResult
+
+	return TestResult{
+		OfflineTestResult: &offlineTestResult,
+		Type:              typ,
 	}
 }
 
@@ -110,6 +121,13 @@ func (u *TestResult) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	offlineTestResult := OfflineTestResult{}
+	if err := utils.UnmarshalJSON(data, &offlineTestResult, "", true, true); err == nil {
+		u.OfflineTestResult = &offlineTestResult
+		u.Type = TestResultTypeOfflineTestResult
+		return nil
+	}
+
 	finishedTracerouteTestResult := FinishedTracerouteTestResult{}
 	if err := utils.UnmarshalJSON(data, &finishedTracerouteTestResult, "", true, true); err == nil {
 		u.FinishedTracerouteTestResult = &finishedTracerouteTestResult
@@ -155,6 +173,10 @@ func (u TestResult) MarshalJSON() ([]byte, error) {
 
 	if u.FailedTestResult != nil {
 		return utils.MarshalJSON(u.FailedTestResult, "", true)
+	}
+
+	if u.OfflineTestResult != nil {
+		return utils.MarshalJSON(u.OfflineTestResult, "", true)
 	}
 
 	if u.FinishedPingTestResult != nil {
