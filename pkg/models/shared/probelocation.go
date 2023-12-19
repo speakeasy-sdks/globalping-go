@@ -19,7 +19,7 @@ type ProbeLocation struct {
 	//
 	Region RegionName `json:"region"`
 	// Only for US states. A two-letter state code based on ISO 3166-2.
-	State *string `json:"state,omitempty"`
+	State *string `json:"state"`
 }
 
 func (o *ProbeLocation) GetAsn() int64 {
