@@ -16,12 +16,9 @@ type MeasurementRequest struct {
 	// Specifies the maximum number of probes that run the measurement.
 	// The result count might be lower if there aren't enough probes available in the specified locations.
 	//
-	Limit *int64 `default:"1" json:"limit"`
-	// An array of locations from which to run the measurement.
-	// Each object specifies a location using one or multiple keys.
-	//
-	Locations          []MeasurementLocationOption `json:"locations,omitempty"`
-	MeasurementOptions *MeasurementOptions         `json:"measurementOptions,omitempty"`
+	Limit              *int64                `default:"1" json:"limit"`
+	Locations          *MeasurementLocations `json:"locations,omitempty"`
+	MeasurementOptions *MeasurementOptions   `json:"measurementOptions,omitempty"`
 	// A public endpoint on which the measurement is executed.
 	// Typically a hostname or an IPv4 address. The exact format depends on the measurement type.
 	//
@@ -54,7 +51,7 @@ func (o *MeasurementRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *MeasurementRequest) GetLocations() []MeasurementLocationOption {
+func (o *MeasurementRequest) GetLocations() *MeasurementLocations {
 	if o == nil {
 		return nil
 	}
