@@ -34,6 +34,8 @@ func newMeasurements(sdkConfig sdkConfiguration) *Measurements {
 //
 // - Set the `inProgressUpdates` option to `true` if the application is running in interactive mode so that the user sees the results right away.
 //   - If the application is interactive by default but also implements a "CI" mode to be used in scripts, do not set the flag in the CI mode.
+//
+// - To perform multiple measurements from exactly the same probes, create a single measurement first, then pass its `id` in the `locations` option for the other measurements.
 func (s *Measurements) CreateMeasurement(ctx context.Context, request *shared.MeasurementRequest) (*operations.CreateMeasurementResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/measurements"
@@ -197,7 +199,7 @@ func (s *Measurements) GetMeasurement(ctx context.Context, request operations.Ge
 				return nil, err
 			}
 
-			res.TwoHundredApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
