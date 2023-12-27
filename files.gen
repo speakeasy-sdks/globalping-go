@@ -32,6 +32,7 @@ pkg/utils/utils.go
 /pkg/models/shared/measurementdnsoptions.go
 /pkg/models/shared/measurementmtroptions.go
 /pkg/models/shared/measurementhttpoptions.go
+/pkg/models/shared/measurementlocations.go
 /pkg/models/shared/measurementlocationoption.go
 /pkg/models/shared/regionname.go
 /pkg/models/shared/continentcode.go
@@ -40,6 +41,7 @@ pkg/utils/utils.go
 /pkg/models/shared/testresult.go
 /pkg/models/shared/inprogresstestresult.go
 /pkg/models/shared/failedtestresult.go
+/pkg/models/shared/offlinetestresult.go
 /pkg/models/shared/finishedpingtestresult.go
 /pkg/models/shared/finishedtraceroutetestresult.go
 /pkg/models/shared/finisheddnstestresult.go
@@ -56,7 +58,6 @@ pkg/utils/utils.go
 /pkg/models/shared/probelocation.go
 /pkg/models/sdkerrors/createmeasurement.go
 /pkg/models/sdkerrors/getmeasurement.go
-USAGE.md
 docs/pkg/models/operations/createmeasurementresponse.md
 docs/pkg/models/operations/getmeasurementrequest.md
 docs/pkg/models/operations/getmeasurementresponsebody.md
@@ -79,6 +80,7 @@ docs/pkg/models/shared/measurementhttpoptionsprotocol.md
 docs/pkg/models/shared/method.md
 docs/pkg/models/shared/request.md
 docs/pkg/models/shared/measurementhttpoptions.md
+docs/pkg/models/shared/measurementlocations.md
 docs/pkg/models/shared/measurementlocationoption.md
 docs/pkg/models/shared/regionname.md
 docs/pkg/models/shared/continentcode.md
@@ -88,6 +90,7 @@ docs/pkg/models/shared/measurementresultitem.md
 docs/pkg/models/shared/testresult.md
 docs/pkg/models/shared/inprogresstestresult.md
 docs/pkg/models/shared/failedtestresult.md
+docs/pkg/models/shared/offlinetestresult.md
 docs/pkg/models/shared/stats.md
 docs/pkg/models/shared/finishedpingtestresulttimings.md
 docs/pkg/models/shared/finishedpingtestresult.md
@@ -123,4 +126,5 @@ docs/pkg/models/sdkerrors/getmeasurementresponsebody.md
 docs/sdks/globalping/README.md
 docs/sdks/measurements/README.md
 docs/sdks/probes/README.md
+USAGE.md
 .gitattributes
