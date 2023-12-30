@@ -16,9 +16,9 @@ Returns a list of all currently connected probes and their metadata.
 package main
 
 import(
+	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 	"context"
 	"log"
-	globalpinggo "github.com/speakeasy-sdks/globalping-go"
 )
 
 func main() {
@@ -48,4 +48,4 @@ func main() {
 **[*operations.ListProbesResponse](../../pkg/models/operations/listprobesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
