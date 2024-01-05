@@ -1,6 +1,4 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
@@ -16,18 +14,20 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-		Locations: []shared.MeasurementLocationOption{
-			shared.MeasurementLocationOption{
-				Tags: []string{
-					"string",
+		Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+			[]shared.MeasurementLocationOption{
+				shared.MeasurementLocationOption{
+					Tags: []string{
+						"string",
+					},
 				},
 			},
-		},
+		),
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
 			shared.MeasurementPingOptions{},
 		),
 		Target: "string",
-		Type:   shared.MeasurementTypePing,
+		Type:   shared.MeasurementTypeMtr,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -39,4 +39,4 @@ func main() {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
