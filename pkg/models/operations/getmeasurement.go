@@ -23,11 +23,11 @@ func (o *GetMeasurementRequest) GetID() string {
 // GetMeasurementResponseBody - Success
 type GetMeasurementResponseBody struct {
 	// Time when the measurement was created.
-	CreatedAt          time.Time                          `json:"createdAt"`
-	ID                 string                             `json:"id"`
-	Limit              *int64                             `default:"1" json:"limit"`
-	Locations          []shared.MeasurementLocationOption `json:"locations,omitempty"`
-	MeasurementOptions *shared.MeasurementOptions         `json:"measurementOptions,omitempty"`
+	CreatedAt          time.Time                    `json:"createdAt"`
+	ID                 string                       `json:"id"`
+	Limit              *int64                       `default:"1" json:"limit"`
+	Locations          *shared.MeasurementLocations `json:"locations,omitempty"`
+	MeasurementOptions *shared.MeasurementOptions   `json:"measurementOptions,omitempty"`
 	// The number of probes that performed the measurement. Smaller or equal to `limit`.
 	ProbesCount int64 `json:"probesCount"`
 	// The measurement results.
@@ -75,7 +75,7 @@ func (o *GetMeasurementResponseBody) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *GetMeasurementResponseBody) GetLocations() []shared.MeasurementLocationOption {
+func (o *GetMeasurementResponseBody) GetLocations() *shared.MeasurementLocations {
 	if o == nil {
 		return nil
 	}
@@ -132,21 +132,14 @@ func (o *GetMeasurementResponseBody) GetUpdatedAt() time.Time {
 }
 
 type GetMeasurementResponse struct {
-	// Success
-	TwoHundredApplicationJSONObject *GetMeasurementResponseBody
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-}
-
-func (o *GetMeasurementResponse) GetTwoHundredApplicationJSONObject() *GetMeasurementResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.TwoHundredApplicationJSONObject
+	// Success
+	Object *GetMeasurementResponseBody
 }
 
 func (o *GetMeasurementResponse) GetContentType() string {
@@ -168,4 +161,11 @@ func (o *GetMeasurementResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetMeasurementResponse) GetObject() *GetMeasurementResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }
