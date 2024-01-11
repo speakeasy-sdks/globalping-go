@@ -1,15 +1,18 @@
 # github.com/speakeasy-sdks/globalping-go
 
-<!-- Start SDK Installation -->
+<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ```bash
 go get github.com/speakeasy-sdks/globalping-go
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
+
+### Example
+
 ```go
 package main
 
@@ -25,18 +28,20 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-		Locations: []shared.MeasurementLocationOption{
-			shared.MeasurementLocationOption{
-				Tags: []string{
-					"string",
+		Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+			[]shared.MeasurementLocationOption{
+				shared.MeasurementLocationOption{
+					Tags: []string{
+						"string",
+					},
 				},
 			},
-		},
+		),
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
 			shared.MeasurementPingOptions{},
 		),
 		Target: "string",
-		Type:   shared.MeasurementTypePing,
+		Type:   shared.MeasurementTypeMtr,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -48,11 +53,10 @@ func main() {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
+<!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
 
 ### [Measurements](docs/sdks/measurements/README.md)
 
@@ -62,36 +66,24 @@ func main() {
 ### [Probes](docs/sdks/probes/README.md)
 
 * [ListProbes](docs/sdks/probes/README.md#listprobes) - List currently connected probes
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
 
 
-<!-- Start Dev Containers -->
-
-<!-- End Dev Containers -->
 
 
 
-<!-- Start Pagination -->
-# Pagination
 
-Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
-returned response object will have a `Next` method that can be called to pull down the next group of results. If the
-return value of `Next` is `nil`, then there are no more pages to be fetched.
+<!-- Start Special Types [types] -->
+## Special Types
 
-Here's an example of one such pagination call:
-<!-- End Pagination -->
+
+<!-- End Special Types [types] -->
 
 
 
-<!-- Start Go Types -->
-
-<!-- End Go Types -->
-
-
-
-<!-- Start Error Handling -->
-# Error Handling
+<!-- Start Error Handling [errors] -->
+## Error Handling
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
@@ -100,17 +92,18 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | sdkerrors.CreateMeasurementResponseBody                     | 400                                                         | application/json                                            |
 | sdkerrors.CreateMeasurementMeasurementsResponseBody         | 422                                                         | application/json                                            |
 | sdkerrors.CreateMeasurementMeasurementsResponseResponseBody | 429                                                         | application/json                                            |
-| sdkerrors.SDKError                                          | 400-600                                                     | */*                                                         |
+| sdkerrors.SDKError                                          | 4xx-5xx                                                     | */*                                                         |
 
-
-## Example
+### Example
 
 ```go
 package main
 
 import (
 	"context"
+	"errors"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
 )
@@ -120,18 +113,20 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-		Locations: []shared.MeasurementLocationOption{
-			shared.MeasurementLocationOption{
-				Tags: []string{
-					"string",
+		Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+			[]shared.MeasurementLocationOption{
+				shared.MeasurementLocationOption{
+					Tags: []string{
+						"string",
+					},
 				},
 			},
-		},
+		),
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
 			shared.MeasurementPingOptions{},
 		),
 		Target: "string",
-		Type:   shared.MeasurementTypePing,
+		Type:   shared.MeasurementTypeMtr,
 	})
 	if err != nil {
 
@@ -162,14 +157,14 @@ func main() {
 }
 
 ```
-<!-- End Error Handling -->
+<!-- End Error Handling [errors] -->
 
 
 
-<!-- Start Server Selection -->
-# Server Selection
+<!-- Start Server Selection [server] -->
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -177,7 +172,7 @@ You can override the default server globally using the `WithServerIndex` option 
 | - | ------ | --------- |
 | 0 | `https://api.globalping.io` | None |
 
-For example:
+#### Example
 
 ```go
 package main
@@ -196,18 +191,20 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-		Locations: []shared.MeasurementLocationOption{
-			shared.MeasurementLocationOption{
-				Tags: []string{
-					"string",
+		Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+			[]shared.MeasurementLocationOption{
+				shared.MeasurementLocationOption{
+					Tags: []string{
+						"string",
+					},
 				},
 			},
-		},
+		),
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
 			shared.MeasurementPingOptions{},
 		),
 		Target: "string",
-		Type:   shared.MeasurementTypePing,
+		Type:   shared.MeasurementTypeMtr,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -221,10 +218,9 @@ func main() {
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
-
 ```go
 package main
 
@@ -242,18 +238,20 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
-		Locations: []shared.MeasurementLocationOption{
-			shared.MeasurementLocationOption{
-				Tags: []string{
-					"string",
+		Locations: shared.CreateMeasurementLocationsArrayOfMeasurementLocationOption(
+			[]shared.MeasurementLocationOption{
+				shared.MeasurementLocationOption{
+					Tags: []string{
+						"string",
+					},
 				},
 			},
-		},
+		),
 		MeasurementOptions: shared.CreateMeasurementOptionsMeasurementPingOptions(
 			shared.MeasurementPingOptions{},
 		),
 		Target: "string",
-		Type:   shared.MeasurementTypePing,
+		Type:   shared.MeasurementTypeMtr,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -265,12 +263,12 @@ func main() {
 }
 
 ```
-<!-- End Server Selection -->
+<!-- End Server Selection [server] -->
 
 
 
-<!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
 
 The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
 
@@ -296,7 +294,7 @@ var (
 ```
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
-<!-- End Custom HTTP Client -->
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
