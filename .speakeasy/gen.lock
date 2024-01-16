@@ -4,9 +4,9 @@ management:
   docChecksum: 59d0490469bf54b08f35db63806cca16
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.231.0
-  releaseVersion: 0.8.0
-  configChecksum: 655eb7a54d4f9720a7411f41620a29d1
+  generationVersion: 2.234.3
+  releaseVersion: 0.8.1
+  configChecksum: 61be025ae8e2c73c45a847588142cf64
   repoURL: https://github.com/speakeasy-sdks/globalping-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/globalping-go
@@ -14,7 +14,7 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.2
-    core: 3.3.0
+    core: 3.3.1
     globalServerURLs: 2.82.1
     unions: 2.85.2
 generatedFiles:
