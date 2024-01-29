@@ -36,7 +36,7 @@ func newMeasurements(sdkConfig sdkConfiguration) *Measurements {
 //   - If the application is interactive by default but also implements a "CI" mode to be used in scripts, do not set the flag in the CI mode.
 //
 // - To perform multiple measurements from exactly the same probes, create a single measurement first, then pass its `id` in the `locations` option for the other measurements.
-func (s *Measurements) CreateMeasurement(ctx context.Context, request *shared.MeasurementRequest) (*operations.CreateMeasurementResponse, error) {
+func (s *Measurements) CreateMeasurement(ctx context.Context, request *shared.MeasurementRequest, security operations.CreateMeasurementSecurity) (*operations.CreateMeasurementResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/measurements"
 
@@ -54,7 +54,7 @@ func (s *Measurements) CreateMeasurement(ctx context.Context, request *shared.Me
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.sdkConfiguration.DefaultClient
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
 	httpRes, err := client.Do(req)
 	if err != nil {
