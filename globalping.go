@@ -133,9 +133,9 @@ func New(opts ...SDKOption) *Globalping {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.8.1",
-			GenVersion:        "2.237.2",
-			UserAgent:         "speakeasy-sdk/go 0.8.1 2.237.2 1.0.0 github.com/speakeasy-sdks/globalping-go",
+			SDKVersion:        "0.9.0",
+			GenVersion:        "2.239.4",
+			UserAgent:         "speakeasy-sdk/go 0.9.0 2.239.4 1.0.0 github.com/speakeasy-sdks/globalping-go",
 		},
 	}
 	for _, opt := range opts {
