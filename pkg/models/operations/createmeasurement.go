@@ -7,6 +7,17 @@ import (
 	"net/http"
 )
 
+type CreateMeasurementSecurity struct {
+	BearerAuth *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (o *CreateMeasurementSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
 type CreateMeasurementResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
