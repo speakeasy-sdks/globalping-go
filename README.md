@@ -19,12 +19,17 @@ package main
 import (
 	"context"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
 )
 
 func main() {
 	s := globalpinggo.New()
+
+	operationSecurity := operations.CreateMeasurementSecurity{
+		BearerAuth: globalpinggo.String("<YOUR_BEARER_TOKEN_HERE>"),
+	}
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
@@ -42,7 +47,7 @@ func main() {
 		),
 		Target: "string",
 		Type:   shared.MeasurementTypeMtr,
-	})
+	}, operationSecurity)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -103,6 +108,7 @@ import (
 	"context"
 	"errors"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
@@ -110,6 +116,10 @@ import (
 
 func main() {
 	s := globalpinggo.New()
+
+	operationSecurity := operations.CreateMeasurementSecurity{
+		BearerAuth: globalpinggo.String("<YOUR_BEARER_TOKEN_HERE>"),
+	}
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
@@ -127,7 +137,7 @@ func main() {
 		),
 		Target: "string",
 		Type:   shared.MeasurementTypeMtr,
-	})
+	}, operationSecurity)
 	if err != nil {
 
 		var e *sdkerrors.CreateMeasurementResponseBody
@@ -180,6 +190,7 @@ package main
 import (
 	"context"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
 )
@@ -188,6 +199,10 @@ func main() {
 	s := globalpinggo.New(
 		globalpinggo.WithServerIndex(0),
 	)
+
+	operationSecurity := operations.CreateMeasurementSecurity{
+		BearerAuth: globalpinggo.String("<YOUR_BEARER_TOKEN_HERE>"),
+	}
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
@@ -205,7 +220,7 @@ func main() {
 		),
 		Target: "string",
 		Type:   shared.MeasurementTypeMtr,
-	})
+	}, operationSecurity)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -227,6 +242,7 @@ package main
 import (
 	"context"
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
 )
@@ -235,6 +251,10 @@ func main() {
 	s := globalpinggo.New(
 		globalpinggo.WithServerURL("https://api.globalping.io"),
 	)
+
+	operationSecurity := operations.CreateMeasurementSecurity{
+		BearerAuth: globalpinggo.String("<YOUR_BEARER_TOKEN_HERE>"),
+	}
 
 	ctx := context.Background()
 	res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
@@ -252,7 +272,7 @@ func main() {
 		),
 		Target: "string",
 		Type:   shared.MeasurementTypeMtr,
-	})
+	}, operationSecurity)
 	if err != nil {
 		log.Fatal(err)
 	}
