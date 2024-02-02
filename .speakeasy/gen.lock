@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: ca02bed5-0cdd-4be0-b5cc-9a4ffe7dcedf
 management:
-  docChecksum: 59d0490469bf54b08f35db63806cca16
+  docChecksum: c0bb0d53d067c16edb81309c6602333a
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: 0.8.1
-  configChecksum: 61be025ae8e2c73c45a847588142cf64
+  generationVersion: 2.248.1
+  releaseVersion: 0.9.0
+  configChecksum: 7ea9e1dadfa7cdfa03dca7d103a0b52f
   repoURL: https://github.com/speakeasy-sdks/globalping-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/globalping-go
@@ -15,7 +15,9 @@ features:
   go:
     constsAndDefaults: 0.1.2
     core: 3.3.1
+    globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
+    methodSecurity: 2.82.2
     unions: 2.85.2
 generatedFiles:
   - measurements.go
@@ -77,6 +79,7 @@ generatedFiles:
   - /pkg/models/shared/probelocation.go
   - /pkg/models/sdkerrors/createmeasurement.go
   - /pkg/models/sdkerrors/getmeasurement.go
+  - docs/pkg/models/operations/createmeasurementsecurity.md
   - docs/pkg/models/operations/createmeasurementresponse.md
   - docs/pkg/models/operations/getmeasurementrequest.md
   - docs/pkg/models/operations/getmeasurementresponsebody.md
