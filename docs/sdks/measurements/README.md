@@ -26,6 +26,7 @@ package main
 
 import(
 	globalpinggo "github.com/speakeasy-sdks/globalping-go"
+	"github.com/speakeasy-sdks/globalping-go/pkg/models/operations"
 	"context"
 	"github.com/speakeasy-sdks/globalping-go/pkg/models/shared"
 	"log"
@@ -33,6 +34,11 @@ import(
 
 func main() {
     s := globalpinggo.New()
+
+
+    operationSecurity := operations.CreateMeasurementSecurity{
+            BearerAuth: globalpinggo.String("<YOUR_BEARER_TOKEN_HERE>"),
+        }
 
     ctx := context.Background()
     res, err := s.Measurements.CreateMeasurement(ctx, &shared.MeasurementRequest{
@@ -50,7 +56,7 @@ func main() {
         ),
         Target: "string",
         Type: shared.MeasurementTypeMtr,
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -63,10 +69,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [shared.MeasurementRequest](../../pkg/models/shared/measurementrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [shared.MeasurementRequest](../../pkg/models/shared/measurementrequest.md)                       | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `security`                                                                                       | [operations.CreateMeasurementSecurity](../../pkg/models/operations/createmeasurementsecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 
 
 ### Response
